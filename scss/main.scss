@@ -33,9 +33,22 @@ main{
 
 footer{
     background-color: $rust;
-    color: white;
+    color: $cream;
+    text-decoration: none;
+    font-variant: small-caps;
 }
 
+footer a:active {
+    color: $cream;
+}
+footer a:hover {
+    color: $cream;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
 
 //Class Styles
 .brand{

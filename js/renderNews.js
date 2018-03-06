@@ -3,7 +3,7 @@ console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
 
 
-var showNewsDataFunction = document.getElementById("heroNews");
+var showNewsDataFunction = document.getElementById("news-data");
 
 function getNews() {
     return $.ajax({
@@ -19,15 +19,17 @@ var newsArticles;
 function showNews() {
 getNews().then((newsData) =>{
  newsArticles = newsData.articles;
-console.log("newsData", newsData);
+// console.log("newsData", newsData);
 
  // to get only 10 items to show:
  // check to see when i = 10, or break a loop when i is defined as 10
-
+let newsStories = "";
         for(var i = 0; i < newsArticles.length; i++){
-             $('#heroNews').append(`<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">
-             ${newsArticles[i].title}</a></li>`);
+            console.log(i, newsArticles[i]);
+
+             newsStories += `<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">${newsArticles[i].title}</a></li>`;
         }
+        $('#news-data').html(newsStories);
     });
 }
 showNewsDataFunction.innerHTML = showNews();
