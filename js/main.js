@@ -1,7 +1,7 @@
 "use strict";
 
 
-let renderDOM = require('./renderDOM');
+let renderDOM = require('./renderNews');
 
 
 console.log("main.js is here");
