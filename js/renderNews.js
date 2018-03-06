@@ -3,7 +3,7 @@ console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
 
 
-var showNewsDataFunction = document.getElementById("news-data");
+var showNewsDataFunction = document.getElementById("heroNews");
 
 function getNews() {
     return $.ajax({
@@ -25,9 +25,8 @@ console.log("newsData", newsData);
  // check to see when i = 10, or break a loop when i is defined as 10
 
         for(var i = 0; i < newsArticles.length; i++){
-             $('#news-data').append(`<ul><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">
-             <li class="news-articles">${newsArticles[i].title}</li>
-             </a></ul>`);
+             $('#heroNews').append(`<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">
+             ${newsArticles[i].title}</a></li>`);
         }
     });
 }
