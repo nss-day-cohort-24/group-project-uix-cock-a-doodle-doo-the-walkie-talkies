@@ -14,11 +14,34 @@ $sage: #7EAB93;
 body{
     font-family: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 16px;
-    background-color: $cream;
     color: $grey;
+    padding: 0;
 }
 
+nav{
+    background-color: $cream;
+    color: $rust;
+}
+
+// div{
+//     border: 2px solid $orange;
+// }
+
+main{
+    margin-top: 115px;
+}
+
+footer{
+    background-color: $rust;
+    color: white;
+}
+
+
 //Class Styles
+.brand{
+    color: $rust;
+    text-transform: uppercase;
+}
 
 //ID styles
 

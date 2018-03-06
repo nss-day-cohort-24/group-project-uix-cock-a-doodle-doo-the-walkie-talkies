@@ -5,13 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>DashBot | Walkie Talkies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
+
 <body>
+    <header>
+        <nav class="navbar navbar-expand-sm fixed-top">
+            <div class="col-3">
+                Today's Date
+            </div>
+            <div class="col-6"> 
+                <div class="navbar-brand">Dashbot</div>
+            </div>
+            <div class="col-3">
+                <a>Login</a>
+            </div>
+        </nav>
+    </header>
+
     <main>
-        <p>Putting text here so that we can ensure grunt and scss are compiling.</p>
-        <div id="news-data"></div>
+        <div id="primaryContainer" class="container-fluid">
+            <div class="row">
+                <div id="heroNews" class="col-8"></div>
+                <div id="weather" class="col-4"></div>
+            </div>
+            <div class="row">
+                <div id="news-data" class="col-12"></div>
+            </div>
+            <div class="row">
+                <div id="homeBooks" class="col-4"></div>
+                <div id="homeMeetups" class="col-8"></div>
+            </div>
+        </div>
+
     </main>
+    
+    <footer class="footer">
+        coming back to add footer later
+    </footer>
     <script src="dist/app.js"></script>
 </body>
 </html>
