@@ -19,13 +19,15 @@ var newsArticles;
 function showNews() {
 getNews().then((newsData) =>{
  newsArticles = newsData.articles;
-
+console.log("newsData", newsData);
 
  // to get only 10 items to show:
  // check to see when i = 10, or break a loop when i is defined as 10
 
         for(var i = 0; i < newsArticles.length; i++){
-             $('#news-data').append(`<li class="news-articles">${newsArticles[i].title}</li>`);
+             $('#news-data').append(`<ul><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">
+             <li class="news-articles">${newsArticles[i].title}</li>
+             </a></ul>`);
         }
     });
 }
