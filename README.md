@@ -32,3 +32,7 @@ Your group will create a Single Page Application that is essentially a dashboard
 * Browserify
 * Grid framework of your choice
 * Firebase for data storage and retrieval
+
+
+
+NEWS API KEY: e453a2b70d6f424aa4afd355a6919f35
