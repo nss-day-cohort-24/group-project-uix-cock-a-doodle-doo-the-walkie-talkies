@@ -18,17 +18,25 @@ $("#login").click(function(){
     });
 });
 
-
-// var today = new Date();
-// var dd = today.getDate();
-// var mm = today.getMonth()+1; //January is 0!
-
-// var yyyy = today.getFullYear();
-// if(dd<10){
-//     dd='0'+dd;
-// } 
-// if(mm<10){
-//     mm='0'+mm;
-// } 
-//  today = dd+'/'+mm+'/'+yyyy;
-// document.getElementById("date").value = today;
+var currentDate = new Date();
+var monthIndex = new Array([]);
+    monthIndex[0] = "January";
+    monthIndex[1] = "February";
+    monthIndex[2] = "March";
+    monthIndex[3] = "April";
+    monthIndex[4] = "May";
+    monthIndex[5] = "June";
+    monthIndex[6] = "July";
+    monthIndex[7] = "August";
+    monthIndex[8] = "September";
+    monthIndex[9] = "October";
+    monthIndex[10] = "November";
+    monthIndex[11] = "December";
+    var date = currentDate.getDate();
+var month = monthIndex[currentDate.getMonth()];
+var year = currentDate.getFullYear();
+var copyright = document.getElementById("showdate");
+function showDate(){
+    copyright.innerHTML = `${month}&nbsp;${date},&nbsp;${year}.`;
+}
+showDate();
