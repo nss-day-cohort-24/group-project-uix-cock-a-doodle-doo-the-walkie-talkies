@@ -11,15 +11,10 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm fixed-top">
-            <div class="col-3">
-                Today's Date: <span div id="date"></span>
-            </div>
-            <div class="col-6"> 
-                <div class="navbar-brand">Dashbot</div>
-            </div>
-            <div class="col-3">
-                    <div id="login" class="g-signin2">Login</div>
+        <nav class="navbar fixed-top">
+            <div class="col-2" id="date">Today's Date:</div>
+            <div id="logo" class="col-8 navbar-brand brand">Dashbot</div>
+            <div class="col-auto login ml-auto" id="login">Login</div>
             </div>
         </nav>
     </header>
@@ -51,7 +46,10 @@
 
         </div>
     </footer>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <script src="dist/app.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="dist/app.js"></script>
 </body>
 </html>

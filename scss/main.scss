@@ -21,6 +21,14 @@ body{
 nav{
     background-color: $cream;
     color: $rust;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.navbar{
+    flex-direction: row;
+    align-items: center;
 }
 
 nav div{
@@ -58,6 +66,11 @@ ul {
 .brand{
     color: $rust;
     text-transform: uppercase;
+    text-align: center;
+}
+
+.login{
+    text-align: right;
 }
 
 //ID styles
