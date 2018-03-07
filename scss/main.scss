@@ -23,6 +23,10 @@ nav{
     color: $rust;
 }
 
+nav div{
+    display: inline-flex;
+}
+
 // div{
 //     border: 2px solid $orange;
 // }
