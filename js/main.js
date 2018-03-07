@@ -43,12 +43,11 @@ var monthIndex = new Array([]);
     monthIndex[9] = "October";
     monthIndex[10] = "November";
     monthIndex[11] = "December";
-    var date = currentDate.getDate();
+    var dateDay = currentDate.getDate();
 var month = monthIndex[currentDate.getMonth()];
 var year = currentDate.getFullYear();
 var date = document.getElementById("showdate");
 function showDate(){
-
-    date.innerHTML = `${month}&nbsp;${date},&nbsp;${year}.`;
+    date.innerHTML = `${month}&nbsp;${dateDay},&nbsp;${year}`;
 }
 showDate();
