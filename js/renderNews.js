@@ -4,7 +4,6 @@ let $ = require('../lib/node_modules/jquery');
 
 
 var showNewsDataFunction = document.getElementById("news-data");
-var showTopNewsImage = document.getElementById("heroNews");
 
 function getNews() {
     return $.ajax({
@@ -43,4 +42,21 @@ showNewsDataFunction.innerHTML = showNews();
 
 
 
-module.exports = {getNews};
+var topArticleImage;
+var showTopNewsImage = document.getElementById("heroNews");
+
+function topImage() {
+    getNews().then((image) => {
+        topArticleImage = image.articles;
+        console.log("top article images", topArticleImage);
+
+        let showImage = "";
+        for(var x = 0; x < 1; x++) {
+            showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}">`;
+        }
+        $('#heroNews').html(showImage);
+    });
+}
+showTopNewsImage.innerHTML = topImage();
+
+module.exports = {getNews, topImage};
