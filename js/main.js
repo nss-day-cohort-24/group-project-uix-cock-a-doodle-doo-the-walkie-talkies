@@ -14,9 +14,20 @@ $("#login").click(function(){
     .then((result) => {
         console.log("UID result from login: ", result.user.uid);
         login.setUser(result.user.uid);
+        $("#login").addClass("d-none");
+        $("#userPic").removeClass("d-none");
         console.log("login complete!");
     });
 });
+
+$("#logout").click(() => {
+    console.log("logout clicked");
+    login.googleLogOut();
+    $("#userPic").addClass("d-none");
+    $("#login").removeClass("d-none");
+    $("#logout").addClass("d-none");
+    $("#secondaryLogin").removeClass("d-none");
+  });
 
 var currentDate = new Date();
 var monthIndex = new Array([]);
@@ -35,8 +46,9 @@ var monthIndex = new Array([]);
     var date = currentDate.getDate();
 var month = monthIndex[currentDate.getMonth()];
 var year = currentDate.getFullYear();
-var copyright = document.getElementById("showdate");
+var date = document.getElementById("showdate");
 function showDate(){
-    copyright.innerHTML = `${month}&nbsp;${date},&nbsp;${year}.`;
+
+    date.innerHTML = `${month}&nbsp;${date},&nbsp;${year}.`;
 }
 showDate();
