@@ -4,7 +4,8 @@ console.log("main.js is here");
 let $ = require('jquery'),
     login = require('./user'),
     renderNews = require('./renderNews'),
-    renderWeather = require('./renderWeather');
+    renderWeather = require('./renderWeather'),
+    userProfile = require('./userProfile');
 
 
 $("#login").click(function(){
