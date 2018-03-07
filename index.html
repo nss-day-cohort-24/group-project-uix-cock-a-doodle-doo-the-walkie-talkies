@@ -10,12 +10,12 @@
 </head>
 
 <body>
+    <div class="wrap">
     <header>
         <nav class="navbar fixed-top">
-            <div class="col-2" id="date">Today's Date:</div>
+            <div class="col-2" id="showDate"></div>
             <div id="logo" class="col-8 navbar-brand brand">Dashbot</div>
-            <div class="col-auto login ml-auto" id="login">Login</div>
-            </div>
+            <div class="col-auto login ml-auto" id="login"><button type="button" class="btn btn-danger">Login</button></div>
         </nav>
     </header>
 
@@ -33,19 +33,15 @@
                 <div id="homeMeetups" class="col-8"></div>
             </div>
         </div>
-
     </main>
-    
-    <footer class="footer">
-        <div class="icon-footer" style="text-align:center"><i class="fas fa-home"></i> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <i class="far fa-newspaper"></i>&nbsp; &nbsp; &#124; &nbsp; &nbsp; <i class="fas fa-book"></i> &nbsp; &nbsp; &#124; &nbsp;&nbsp;  <i class="fab fa-meetup"></i>&nbsp; &nbsp; &#124; &nbsp; &nbsp; <i class="far fa-sun"></i><br>
+</div>
 
+<footer class="footer">
+    <div class="icon-footer" style="text-align:center;"><i class="fas fa-home"></i> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <i class="far fa-newspaper"></i>&nbsp; &nbsp; &#124; &nbsp; &nbsp; <i class="fas fa-book"></i> &nbsp; &nbsp; &#124; &nbsp;&nbsp;  <i class="fab fa-meetup"></i>&nbsp; &nbsp; &#124; &nbsp; &nbsp; <i class="far fa-sun"></i></div>
+    <div style="text-align: center;"><a href="https://newsapi.org" target="_blank" alt="News API" title="News API">news api</a> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <a href="http://openweathermap.org/" target="_blank" alt="Weather API" title="Weather API">weather api</a> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <a href="https://openlibrary.org/dev/docs/api/search" target="_blank" alt="Books API" title="Books API">books api</a> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <a href="https://www.meetup.com/meetup_api/" alt="Meetups API" title="Meetups API">meetups api</a></div>
+</footer>
 
-            <div><a href="https://newsapi.org" target="_blank" alt="News API" title="News API">news api</a> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <a href="http://openweathermap.org/" target="_blank" alt="Weather API" title="Weather API">weather api</a> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <a href="https://openlibrary.org/dev/docs/api/search" target="_blank" alt="Books API" title="Books API">books api</a> &nbsp; &nbsp; &#124; &nbsp; &nbsp; <a href="https://www.meetup.com/meetup_api/" alt="Meetups API" title="Meetups API">meetups api</a></div>
-
-
-
-        </div>
-    </footer>
+<!--scripts below -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
