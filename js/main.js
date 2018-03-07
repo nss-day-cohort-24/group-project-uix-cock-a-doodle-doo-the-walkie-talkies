@@ -5,7 +5,8 @@ let $ = require('jquery'),
     login = require('./user'),
     renderNews = require('./renderNews'),
     renderWeather = require('./renderWeather'),
-    userProfile = require('./userProfile');
+    userProfile = require('./userProfile'),
+    user = require('./user');
 
 
 $("#login").click(function(){
@@ -28,6 +29,28 @@ $("#logout").click(() => {
     $("#logout").addClass("d-none");
     $("#secondaryLogin").removeClass("d-none");
   });
+
+
+
+  
+function loadInfoToDOM() {
+    console.log("Need to load some info");
+    let currentUser = login.getUser();
+    userProfile.getNews(currentUser).then((newsData) => {
+
+        var hero = document.getElementById("heroNews");
+
+        console.log("i got songs buddy", newsData);
+        // var idArray = Object.keys(songData);
+        // idArray.forEach((key) => {
+        //   songData[key].id = key;
+        // });
+        hero.innerHTML = newsData;
+      });
+  }
+  loadInfoToDOM();
+
+
 
 var currentDate = new Date();
 var monthIndex = new Array([]);

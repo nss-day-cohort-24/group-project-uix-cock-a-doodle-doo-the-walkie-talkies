@@ -28,7 +28,7 @@ let newsStories = "";
 // let newsImage = "";
         for(var i = 0; i < 10; i++){
             // console.log(i, newsArticles[i]);
-             newsStories += `<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">${newsArticles[i].title}</a> <a href="#" style="text-decoration: none"><i class="far fa-heart"></i>save to favorites</a></li>`;
+             newsStories += `<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">${newsArticles[i].title}</a> <a href="#" style="text-decoration: none; color: grey;"><i class="far fa-heart"></i>save to favorites</a></li>`;
             //  newsImage = `<img src="${newsArticles[0].urlToImage}" alt="Top Story Image Trending Now" title="Top Story Image Trending Now">`;
         }
         $('#news-data').html(newsStories);
