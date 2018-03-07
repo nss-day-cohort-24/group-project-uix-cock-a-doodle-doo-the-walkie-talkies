@@ -6,6 +6,15 @@ firebase = require('firebase/app');
 let $ = require('../lib/node_modules/jquery');
 let config = require('./configure');
 
+
+/* 
+if the user clicks 'profile' button (id=userPic), the DOM will be rendered to show saved items
+
+saved items will be in the div labeled "domContainer"
+*/
+
+
+
 // logout button
 
 function logoutButton() {
