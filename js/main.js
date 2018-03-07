@@ -48,6 +48,6 @@ var month = monthIndex[currentDate.getMonth()];
 var year = currentDate.getFullYear();
 var date = document.getElementById("showdate");
 function showDate(){
-    date.innerHTML = `${month}&nbsp;${dateDay},&nbsp;${year}.`;
+    date.innerHTML = `${month}&nbsp;${dateDay},&nbsp;${year}`;
 }
 showDate();
