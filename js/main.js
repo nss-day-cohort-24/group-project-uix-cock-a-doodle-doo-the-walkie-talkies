@@ -2,8 +2,10 @@
 console.log("main.js is here");
 
 let $ = require('jquery'),
-    renderDOM = require('./renderDOM'),
-    login = require('./user');
+    login = require('./user'),
+    renderNews = require('./renderNews'),
+    renderWeather = require('./renderWeather');
+
 
 $("#login").click(function(){
     console.log("user clicked login");
@@ -16,3 +18,16 @@ $("#login").click(function(){
 });
 
 
+// var today = new Date();
+// var dd = today.getDate();
+// var mm = today.getMonth()+1; //January is 0!
+
+// var yyyy = today.getFullYear();
+// if(dd<10){
+//     dd='0'+dd;
+// } 
+// if(mm<10){
+//     mm='0'+mm;
+// } 
+//  today = dd+'/'+mm+'/'+yyyy;
+// document.getElementById("date").value = today;
