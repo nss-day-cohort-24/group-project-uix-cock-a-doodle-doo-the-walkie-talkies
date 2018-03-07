@@ -17,13 +17,16 @@ function getWeather() {
 // &apiKey=f003b59e8e7d506d9b387f115f63483e
 
 var currentWeather;
+var weatherDetails;
 
 function showWeather() {
         getWeather().then((weatherData) => {
-        currentWeather = weatherData.main.temp;
+        currentWeather = weatherData.main.temp.toFixed(0);
+        weatherDetails = weatherData.weather[0].description + weatherData.weather[0].icon;// weather details like sunny, partly cloudy
         console.log("WeatherData", weatherData);
+        console.log("weather Details", weatherDetails);
 
-        showWeatherData.innerHTML = `<p>${currentWeather}</p>`;
+        showWeatherData.innerHTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
     });
 }
 
