@@ -15,11 +15,18 @@
         <nav class="navbar fixed-top">
             <div class="col-2" id="date">Today's Date:</div>
             <div id="logo" class="col-8 navbar-brand brand">Dashbot</div>
-            <div class="col-auto login ml-auto" id="login"><button type="button" class="btn btn-danger">Login</button></div>
+            <div class="col-auto login ml-auto">
+                <button id="login" type="button" class="btn btn-danger">Login</button>
+                <button id="userPic" type="button" class="btn btn-danger d-none">Profile</button>
+            </div>
         </nav>
     </header>
 
     <main>
+        <div id="testLogout">
+        <button id="logout" type="button" class="btn btn-danger">logout</button>
+        <button id="secondaryLogin" type="button" class="btn btn-danger d-none">Login</button>
+        </div>
         <div id="primaryContainer" class="container-fluid">
             <div class="row">
                 <div id="heroNews" class="col-8"></div>
