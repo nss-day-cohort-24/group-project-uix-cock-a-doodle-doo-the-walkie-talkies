@@ -1,12 +1,21 @@
 "use strict";
-
-
-let renderNews = require('./renderNews');
-let renderWeather = require('./renderWeather');
-
-
 console.log("main.js is here");
 
+let $ = require('jquery'),
+    login = require('./user'),
+    renderNews = require('./renderNews'),
+    renderWeather = require('./renderWeather');
+
+
+$("#login").click(function(){
+    console.log("user clicked login");
+    login.googleLogIn()
+    .then((result) => {
+        console.log("UID result from login: ", result.user.uid);
+        login.setUser(result.user.uid);
+        console.log("login complete!");
+    });
+});
 
 
 // var today = new Date();

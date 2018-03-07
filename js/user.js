@@ -1,14 +1,22 @@
 "use strict";
-let firebase = require("./"),
-	provider = new firebase.auth.GoogleAuthProvider(),
-	currentUser = null;
 
+// REQUIRES
+let fireConfig = require("./configure"),
+	currentUser = null,
+	$ = require('jquery');
 
-function logInGoogle() {
+var firebase = require("firebase/app");
+    require("firebase/auth");
+	require("firebase/database");
+
+var provider = new firebase.auth.GoogleAuthProvider();
+
+// FUNCTIONS
+function googleLogIn() {
     return firebase.auth().signInWithPopup(provider);
 }
 
-function logOut(){
+function googleLogOut(){
     return firebase.auth().signOut();
 }
 
@@ -24,10 +32,11 @@ firebase.auth().onAuthStateChanged(function(user){
 	console.log("onAuthStateChanged", user);
 	if (user){
 		currentUser = user.uid;
+		console.log("This user is already logged in");
 	}else{
 		currentUser = null;
-		console.log("NO USER LOGGED IN");
+		console.log("User has not logged in");
 	}
 });
 
-module.exports = {logInGoogle, logOut, setUser, getUser};
+module.exports = {googleLogIn, googleLogOut, setUser, getUser};
