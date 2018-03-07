@@ -46,8 +46,9 @@ var monthIndex = new Array([]);
     var date = currentDate.getDate();
 var month = monthIndex[currentDate.getMonth()];
 var year = currentDate.getFullYear();
-var copyright = document.getElementById("showdate");
+var date = document.getElementById("showdate");
 function showDate(){
-    copyright.innerHTML = `${month}&nbsp;${date},&nbsp;${year}`;
+
+    date.innerHTML = `${month}&nbsp;${date},&nbsp;${year}.`;
 }
 showDate();
