@@ -24,7 +24,7 @@ getNews().then((newsData) =>{
  // to get only 10 items to show:
  // check to see when i = 10, or break a loop when i is defined as 10
 let newsStories = "";
-        for(var i = 0; i < newsArticles.length; i++){
+        for(var i = 0; i < 10; i++){
             console.log(i, newsArticles[i]);
 
              newsStories += `<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">${newsArticles[i].title}</a></li>`;
