@@ -4,6 +4,7 @@ let $ = require('../lib/node_modules/jquery');
 
 
 var showNewsDataFunction = document.getElementById("news-data");
+var showTopNewsImage = document.getElementById("heroNews");
 
 function getNews() {
     return $.ajax({
@@ -24,10 +25,11 @@ getNews().then((newsData) =>{
  // to get only 10 items to show:
  // check to see when i = 10, or break a loop when i is defined as 10
 let newsStories = "";
+// let newsImage = "";
         for(var i = 0; i < 10; i++){
-            console.log(i, newsArticles[i]);
-
+            // console.log(i, newsArticles[i]);
              newsStories += `<li class="news-articles"><a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">${newsArticles[i].title}</a></li>`;
+            //  newsImage = `<img src="${newsArticles[0].urlToImage}" alt="Top Story Image Trending Now" title="Top Story Image Trending Now">`;
         }
         $('#news-data').html(newsStories);
     });
