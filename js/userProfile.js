@@ -1,7 +1,10 @@
 "use strict";
 
 console.log("USER PROFILE JS");
-let fb = require('./user');
+let fb = require('./user'),
+firebase = require('firebase/app');
+let $ = require('../lib/node_modules/jquery');
+let config = require('./configure');
 
 // logout button
 
@@ -10,18 +13,37 @@ function logoutButton() {
 }
 logoutButton();
 
-// saves / favorites
 
+
+
+function getNews(currentUser) {
+    return $.ajax({
+      url: `${config.getFBsettings().databaseURL}/news-article.json?orderBy="uid"&equalTo="${currentUser}"`
+    }).done((userNewsData) => {
+      return userNewsData;
+    });
+  }
+
+// saves / favorites
 function saves() {
     console.log("saves function is showing up");
+
 }
 saves();
 
 // delete and edit buttons
-function deleteBtn() {
+$(document).on("click", ".delete-btn", function deleteBtn(deleteButton) {
     console.log("delete button function");
-}
-deleteBtn();
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/news-articles.json"`,
+        type: 'DELETE',
+        data: JSON.stringify(deleteButton),
+        dataType: 'json'
+    }).done((db) => {
+        console.log("db", db);
+        return db;
+    });
+});
 
 function edit() {
     console.log("edit button function");
@@ -29,11 +51,7 @@ function edit() {
 edit();
 
 
-// user info
-function userInfo() {
-    console.log("user Info");
-}
-userInfo();
 
 
-module.exports = {logoutButton, saves, deleteBtn, edit, userInfo};
+
+module.exports = {logoutButton, saves, edit};
