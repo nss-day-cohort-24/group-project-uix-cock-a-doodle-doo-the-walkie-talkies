@@ -21,19 +21,14 @@ body{
 nav{
     background-color: $cream;
     color: $rust;
-    display: flex;
     justify-content: space-between;
-    flex-direction: row;
-}
-
-.navbar{
-    flex-direction: row;
-    align-items: center;
+    height: 4rem;
 }
 
 nav div{
     display: inline-flex;
 }
+
 
 // div{
 //     border: 2px solid $orange;
@@ -58,11 +53,13 @@ footer a:hover {
     text-decoration: none;
 }
 
-#news-data li {
-    list-style-type: none;
-} 
 
 //Class Styles
+.navbar{
+    flex-direction: row;
+    align-items: center;
+}
+
 .brand{
     color: $rust;
     text-transform: uppercase;
@@ -77,6 +74,17 @@ footer a:hover {
     min-height: calc(100vh - 150px);
 }
 
-//ID styles
+.profPic{
+    height: 55%;
+    align-self: center;
+}
 
+//ID styles
+#news-data li {
+    list-style-type: none;
+} 
+
+#weather{
+    background-color: orange;
+}
 
