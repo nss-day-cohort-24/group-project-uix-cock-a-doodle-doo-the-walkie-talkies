@@ -27,8 +27,9 @@ let newsStories = "";
 let seeMore = document.getElementById("seeMoreNews");
         for(var i = 0; i < 3; i++){
             // console.log(i, newsArticles[i]);
-             newsStories += `<li class="news-articles"><h5>${newsArticles[i].title}</h5></li>
-             <li style="font-size: 12px;">${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
+
+             newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
+             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
 
             // if(newsArticles.description){
             //     newsStories += `<li class="news-articles" style="font-size: 13px;"><strong>${newsArticles[i].title}</strong></li>
