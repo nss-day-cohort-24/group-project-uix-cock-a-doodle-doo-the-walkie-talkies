@@ -2,7 +2,7 @@
 
 console.log("USER PROFILE JS");
 
-let fb = require('./user'),
+let login = require('./user'),
 firebase = require('firebase/app');
 let $ = require('../lib/node_modules/jquery');
 let config = require('./configure');
@@ -13,6 +13,14 @@ if the user clicks 'profile' button (id=userPic), the DOM will be rendered to sh
 
 saved items will be in the div labeled "domContainer"
 */
+
+let profileButton = document.getElementById("userPic");
+
+
+profileButton.addEventListener("click", function userProfile() {
+    console.log("user profile function is working");
+});
+
 
 function getNews(currentUser) {
     return $.ajax({
@@ -45,6 +53,14 @@ function edit() {
 
 
 
-
+///////////////LOGOUT BUTTON 
+$("#logout").click(() => {
+    console.log("logout clicked");
+    login.googleLogOut();
+    $("#userPic").addClass("d-none");
+    $("#login").removeClass("d-none");
+    $("#logout").addClass("d-none");
+    $("#secondaryLogin").removeClass("d-none");
+  });
 
 module.exports = {getNews, saves, deleteBtn, edit};
