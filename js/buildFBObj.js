@@ -14,5 +14,15 @@ function buildUserObj(UID) {
   return userObj;
 }
 
+function buildNewsObj(news) {
+    let newsObj = {
+        article_title: "",
+        article_description: "",
+        article_source: "",
+        uid: user.getUser()
+    };
+    return newsObj;
+}
 
-module.exports = {buildUserObj};
+
+module.exports = {buildUserObj, buildNewsObj};

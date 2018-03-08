@@ -2,6 +2,8 @@
 // console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
 let profile = require('./userProfile');
+let fireConfig = require("./configure"),
+      build = require('./buildFBObj');
 
 
 var showNewsDataFunction = document.getElementById("news-data");
@@ -29,20 +31,50 @@ let seeMore = document.getElementById("seeMoreNews");
         for(var i = 0; i < 3; i++){
             // console.log(i, newsArticles[i]);
              newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
-             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
-
-            // if(newsArticles.description){
-            //     newsStories += `<li class="news-articles" style="font-size: 13px;"><strong>${newsArticles[i].title}</strong></li>
-            //  <li style="font-size: 12px;">${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
-            // }
+             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
         }
         $('#news-data').html(newsStories);
+        // $('.favorites-heart').each(function (){
+        //     console.log("here it is", $(this));
+        //     $(this).click(run);
+        // });
+        // console.log("heart", saveHeart);
+        // $('#favorites-heart').click(run);
     });
 }
 showNewsDataFunction.innerHTML = showNews();
 
 
+///////////////////////////******************///////////////////////////
+//  WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
+///////////////////////////******************///////////////////////////
+function saveNews() {
+    addNews();
+}
 
+function addNews(newsObj) {
+    console.log("add news articles to firebase", newsObj);
+    return $.ajax({
+      url: `${fireConfig.getFBsettings().databaseURL}/newsArticles.json`,
+      type: 'POST',
+      data: JSON.stringify(newsObj),
+      dataType: 'json'
+   }).done((userNews) => {
+      return userNews;
+   });
+}
+
+showNewsDataFunction.addEventListener("click", function onClick(event) {
+    if(event.target.id == "favorites-heart") {
+        saveNews();
+    }else {
+        // console.log("noooooooooooo");
+    }
+});
+
+///////////////////////////******************///////////////////////////
+//////////  TOP HEADLINE IMAGE WILL APPEAR AT THE TOP WHEN USER LOGS IN
+///////////////////////////******************///////////////////////////
 var topArticleImage;
 var showTopNewsImage = document.getElementById("heroNews");
 
@@ -56,11 +88,16 @@ function topImage() {
             showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}">`;
         }
         $('#heroNews').html(showImage);
+        
     });
 }
 showTopNewsImage.innerHTML = topImage();
 
 
+
+///////////////////////////******************///////////////////////////
+//  RENDER TOP 10 NEWS ARTICLES 
+///////////////////////////******************///////////////////////////
 var news10Articles;
 $("#viewAllNews").click(() => {
     // console.log("news data div has been clicked");
@@ -68,8 +105,6 @@ $("#viewAllNews").click(() => {
 
     showTop10();
   });
-
-
 
 
   function showTop10() {
@@ -80,19 +115,17 @@ $("#viewAllNews").click(() => {
     let seeMore = document.getElementById("seeMoreNews");
             for(var i = 0; i < 10; i++){
                  tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
-                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">See full  article at ${news10Articles[i].source.name}</a></li><br>`;
+                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">See full  article at ${news10Articles[i].source.name}</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
             }
             $('#primaryContainer').html(tenStories);
+
         });
     }
 
 
 
-    //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
-
-    $('#favorites-heart').click(() => {
-        console.log("SAVE THIS ITEM ${news10Articles[i].title}");
-    });
 
 
-module.exports = {getNews, topImage};
+
+
+module.exports = {getNews, topImage, addNews, saveNews};
