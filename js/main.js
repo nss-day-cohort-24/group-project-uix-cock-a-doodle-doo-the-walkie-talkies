@@ -6,7 +6,10 @@ let $ = require('jquery'),
     renderNews = require('./renderNews'),
     renderWeather = require('./renderWeather'),
     userProfile = require('./userProfile'),
-    user = require('./user');
+    user = require('./user'), 
+    date = require('./dateToday'),
+    addUser = require('./fbAddUser.js'),
+    userObj = require('./buildFBObj');
 
 
 $("#login").click(function(){
@@ -16,8 +19,9 @@ $("#login").click(function(){
         console.log("UID result from login: ", result.user.uid);
         login.setUser(result.user.uid);
         $("#login").addClass("d-none");
-        $("#userPic").removeClass("d-none");
+        $("#userPic").removeClass("d-none").html(`<img src="${result.user.photoURL}" alt="${result.user.displayName} photo from Google" class="profPic rounded-circle">`);
         console.log("login complete!");
+        sendToFirebase();
     });
 });
 
@@ -31,46 +35,9 @@ $("#logout").click(() => {
   });
 
 
-
-  
-function loadInfoToDOM() {
-    console.log("Need to load some info");
-    let currentUser = login.getUser();
-    userProfile.getNews(currentUser).then((newsData) => {
-
-        var hero = document.getElementById("heroNews");
-
-        console.log("i got songs buddy", newsData);
-        // var idArray = Object.keys(songData);
-        // idArray.forEach((key) => {
-        //   songData[key].id = key;
-        // });
-        hero.innerHTML = newsData;
-      });
-  }
-  loadInfoToDOM();
-
-
-
-var currentDate = new Date();
-var monthIndex = new Array([]);
-    monthIndex[0] = "January";
-    monthIndex[1] = "February";
-    monthIndex[2] = "March";
-    monthIndex[3] = "April";
-    monthIndex[4] = "May";
-    monthIndex[5] = "June";
-    monthIndex[6] = "July";
-    monthIndex[7] = "August";
-    monthIndex[8] = "September";
-    monthIndex[9] = "October";
-    monthIndex[10] = "November";
-    monthIndex[11] = "December";
-    var dateDay = currentDate.getDate();
-var month = monthIndex[currentDate.getMonth()];
-var year = currentDate.getFullYear();
-var date = document.getElementById("showdate");
-function showDate(){
-    date.innerHTML = `${month}&nbsp;${dateDay},&nbsp;${year}`;
+function sendToFirebase(){
+      let userBuild = userObj.buildUserObj();
+      //need to add logic to not add to firebase if user is already in firebase by UID
+      addUser.addUser(userBuild);
 }
-showDate();
+
