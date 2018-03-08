@@ -115,6 +115,16 @@ h3{
     background-color: $grey;
     color: white;
 }
+.btnGrey{
+    background-color: $grey;
+    color: white;
+}
+
+.btnRust{
+    background-color: $rust;
+    color: white;
+    padding: 1em;
+}
 
 //ID styles
 #news-data li {
