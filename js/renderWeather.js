@@ -4,7 +4,7 @@ let $ = require('../lib/node_modules/jquery'),
 firebase = require("./configure"),
 userData = require("./user");
 
-
+// &apiKey=f003b59e8e7d506d9b387f115f63483e
 
 var showWeatherData = document.getElementById("weather");
 
@@ -21,12 +21,12 @@ function getWeather() {
 //add zipcode information to Firebase. Since this info need to be overwritten we use PUT and not POST. POST is for appending not overwriting.
 function addingZip(captureZip) {
     console.log("what's in captureZip inside addingZip ", captureZip);
-    let test = `${firebase.getFBsettings().databaseURL}/userInfo/-L71KA9vAHe-eK6W5T7a.json`;
+    let test = `${firebase.getFBsettings().databaseURL}/userInfo/-L74tKwYPWEo1O8zgtZ1.json`;
     console.log("url", test);
     
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userInfo/-L71KA9vAHe-eK6W5T7a.json`,
-        type: 'POST',
+        url: `${firebase.getFBsettings().databaseURL}/userInfo/-L74tKwYPWEo1O8zgtZ1.json`,
+        type: 'PATCH',
         data: JSON.stringify(captureZip),
         dataType: 'json'
     }).done((zipData) => {
@@ -34,8 +34,6 @@ function addingZip(captureZip) {
         return zipData;
     });
 }
-
-// &apiKey=f003b59e8e7d506d9b387f115f63483e
 
 // Get weather 
 function addWeather() {
@@ -69,27 +67,31 @@ showWeather();
 // Add event listener to get zip information.
 
 var userZip = 0;
-
+var captureZip;
 function inputZipcode(){
     var zipInputfield = document.getElementById("zip-code");
 
-    console.log("What is in zipInputfield ", zipInputfield);
-
-    zipInputfield.innerHTML = `<input type="text" name="zipcode" id="user-zip"><button id="enterZip" type="submit">SEND</button>`;
+    zipInputfield.innerHTML = `<input type="text" name="zipcode" id="user-zip">
+    <button id="enterZip" type="submit">SEND</button>`;
 
     userZip = document.getElementById("user-zip");
     var enterZip = document.getElementById("enterZip");
 
     enterZip.addEventListener("click", function() {
-        var inputuserZip = userZip.value;
-        
+        var inputuserZip = userZip.value; // using zipcode value entered by user        
         console.log("What's in inputuserZip ", inputuserZip);
-        var captureZip = {
-            zip: inputuserZip
+        // creating zip key in FB
+        
+        captureZip = {
+            zipCode: inputuserZip
         }; 
-            console.log("What's in inputUserZip inside captureZip ", captureZip);
+        addingZip(captureZip).then((data) => {
+            console.log("What's in data ", data);
+        });
+
     });
-}
+}console.log("What's in inputUserZip inside captureZip ", captureZip.zip);
+inputZipcode();
 
 module.exports = {
     showWeather,
