@@ -21,11 +21,11 @@ function getWeather() {
 //add zipcode information to Firebase. Since this info need to be overwritten we use PUT and not POST. POST is for appending not overwriting.
 function addingZip(captureZip) {
     console.log("what's in captureZip inside addingZip ", captureZip);
-    let test = `${firebase.getFBsettings().databaseURL}/userInfo/-L74tKwYPWEo1O8zgtZ1.json`;
-    console.log("url", test);
+    // let test = `${firebase.getFBsettings().databaseURL}/userInfo/-L74tKwYPWEo1O8zgtZ1.json`;
+    // console.log("url", test);
     
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userInfo/-L74tKwYPWEo1O8zgtZ1.json`,
+        url: `${firebase.getFBsettings().databaseURL}/userInfo/-L75FYIvED1DNEb40InK.json`,
         type: 'PATCH',
         data: JSON.stringify(captureZip),
         dataType: 'json'
@@ -36,7 +36,7 @@ function addingZip(captureZip) {
 }
 
 // Get weather 
-function addWeather() {
+function addWeatherFB() {
 
 }
 
@@ -46,51 +46,46 @@ var weatherDetails;
 
 // showing weather on the DOM
 function showWeather() {
-    getWeather().then((weatherData) => {
-    currentWeather = weatherData.main.temp.toFixed(0) + ' &#8457;';
-    weatherDetails = weatherData.weather[0].icon + " " + weatherData.weather[0].description + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
+        getWeather().then((weatherData) => {
+        currentWeather = weatherData.main.temp.toFixed(0) + ' &#8457;';
+        weatherDetails = weatherData.weather[0].icon + " " + weatherData.weather[0].description + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
 
-    console.log("WeatherData", weatherData);
-    console.log("weather Details", weatherDetails);
+        console.log("WeatherData", weatherData);
+        console.log("weather Details", weatherDetails);
 
-    showWeatherData.innerHTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
+        showWeatherData.innerHTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
 
-    inputZipcode();
-    console.log("What's showweatherData showing", showWeatherData);
-});
+        inputZipcode();
+        console.log("What's showweatherData showing", showWeatherData);
+    });
 }
 
 showWeather();
 
-
 // creating input field for html. 
 // Add event listener to get zip information.
 
-var userZip = 0;
-var captureZip;
+var userZip = document.getElementById("user-zip");
+var captureUserZip;
+var enterZip = document.getElementById("enterZip");
+
 function inputZipcode(){
-    var zipInputfield = document.getElementById("zip-code");
-
-    zipInputfield.innerHTML = `<input type="text" name="zipcode" id="user-zip">
-    <button id="enterZip" type="submit">SEND</button>`;
-
-    userZip = document.getElementById("user-zip");
-    var enterZip = document.getElementById("enterZip");
 
     enterZip.addEventListener("click", function() {
         var inputuserZip = userZip.value; // using zipcode value entered by user        
         console.log("What's in inputuserZip ", inputuserZip);
         // creating zip key in FB
         
-        captureZip = {
+        captureUserZip = {
             zipCode: inputuserZip
         }; 
-        addingZip(captureZip).then((data) => {
+        addingZip(captureUserZip).then((data) => {
             console.log("What's in data ", data);
         });
 
     });
-}console.log("What's in inputUserZip inside captureZip ", captureZip.zip);
+}
+
 inputZipcode();
 
 module.exports = {
