@@ -2,7 +2,7 @@
 console.log("configure file for Firebase");
 
 // REQUIRES
-var firebase = require("firebase/app");
+let firebase = require("firebase/app");
     require("firebase/auth");
     require("firebase/database");
 
