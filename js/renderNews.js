@@ -1,5 +1,5 @@
 "use strict";
-console.log("renderDOM file is coming through");
+// console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
 
 
@@ -48,7 +48,7 @@ var showTopNewsImage = document.getElementById("heroNews");
 function topImage() {
     getNews().then((image) => {
         topArticleImage = image.articles;
-        console.log("top article images", topArticleImage);
+        // console.log("top article images", topArticleImage);
 
         let showImage = "";
         for(var x = 0; x < 1; x++) {
@@ -63,7 +63,7 @@ showTopNewsImage.innerHTML = topImage();
 
 var newAllNews;
 $("#viewAllNews").click(() => {
-    console.log("news data div has been clicked");
+    // console.log("news data div has been clicked");
     //render the dom with the #primaryContainer as empty
     $('#primaryContainer').html("");
   });
