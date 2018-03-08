@@ -2,9 +2,10 @@
 console.log("configure file for Firebase");
 
 // REQUIRES
+
 let firebase = require("firebase/app");
-    require("firebase/auth");
-    require("firebase/database");
+require("firebase/auth");
+require("firebase/database");
 
 let fbKey = require("./firebaseKey"),
     fbData = fbKey();
