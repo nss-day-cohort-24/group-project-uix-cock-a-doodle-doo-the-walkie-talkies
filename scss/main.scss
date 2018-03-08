@@ -14,6 +14,7 @@ $sage: #7EAB93;
 body{
     font-family: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 16px;
+    line-height: 1.5rem; 
     color: $grey;
     padding: 0;
 }
@@ -36,7 +37,6 @@ nav div{
 
 main{
     margin-top: 80px;
-    margin-right: 15px;
 }
 
 footer{
@@ -46,7 +46,7 @@ footer{
     color: $cream;
     text-decoration: none;
     font-variant: small-caps;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: 80px;
@@ -61,6 +61,20 @@ footer a:hover {
     text-decoration: none;
 }
 
+h1{
+    font-size: 30px;
+    color: $rust;
+}
+
+h2{
+    font-size: 24px;
+}
+
+h3{
+    font-size: 18px;
+    color: $grey;
+    font-weight: bolder;
+}
 
 //Class Styles
 .navbar{
@@ -82,10 +96,20 @@ footer a:hover {
     min-height: calc(100vh - 150px);
 }
 
+.row {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 .profPic{
     height: 40px;
     width: 40px;
     align-self: center;
+}
+
+.btnGrey{
+    background-color: $grey;
+    color: white;
 }
 
 //ID styles
@@ -93,7 +117,17 @@ footer a:hover {
     list-style-type: none;
 } 
 
-#weather{
-    background-color: orange;
+#weather,
+#homeBooks{
+    background-color: $orange;
+    padding: 2em;
 }
 
+#homeMeetups, #heroNews{
+    background-color: $grey;
+    padding: 2em;
+}
+
+#news-data{
+    padding: 1em 2em 0em 2em;
+}

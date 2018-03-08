@@ -9,7 +9,8 @@ let $ = require('jquery'),
     user = require('./user'), 
     date = require('./dateToday'),
     addUser = require('./fbAddUser.js'),
-    userObj = require('./buildFBObj');
+    userObj = require('./buildFBObj'),
+    books = require('./searchBooks');
 
 
 $("#login").click(function(){
