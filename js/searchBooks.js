@@ -1,65 +1,38 @@
-"use strict";
+// "use strict";
 
-console.log("search books js is here");
+// console.log("search books js is here");
 
-"use strict";
-let $ = require('jquery'),
-firebase = require("./configure"),
-userData = require("./user");
-
-
-var bookInput = document.getElementById("bookSearch").val;
-var bookResults = document.getElementById("bookResults");
-
-//get weather information from API
-function getBooks() {
-    return $.ajax({
-        url: `http://openlibrary.org/search.json?q='${bookInput}`
-    }).done((bookReturn) => {
-        console.log("Book search results", bookReturn);
-        return bookReturn;
-    });
-}
-
-// showing books on the DOM
-function showBooks() {
-    getBooks().then((bookReturn) => {
-
-    $("#primaryContainer").innerHTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
-
-    inputZipcode();
-    console.log("What's showweatherData showing", showWeatherData);
-});
-}
-
-showWeather();
+// "use strict";
+// let $ = require('jquery'),
+// firebase = require("./configure"),
+// userData = require("./user");
 
 
-// creating input field for html. 
-// Add event listener to get zip information.
+// var bookInput = document.getElementById("bookSearch").val;
+// var bookResults = document.getElementById("bookResults");
 
-var userZip = 0;
+// //get weather information from API
+// function getBooks() {
+//     return $.ajax({
+//         url: `http://openlibrary.org/search.json?q='${bookInput}`
+//     }).done((bookReturn) => {
+//         console.log("Book search results", bookReturn);
+//         return bookReturn;
+//     });
+// }
 
-function inputZipcode(){
-var zipInputfield = document.getElementById("zip-code");
+// // building DOM for books search results
+// function showBooksResults() {
+//     getBooks().then((bookReturn) => {
+//     $("#primaryContainer").HTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
 
-console.log("What is in zipInputfield ", zipInputfield);
+//     console.log("What are the books results?", bookReturn);
+// });
+// }
 
-    zipInputfield.innerHTML = `<input type="text" name="zipcode" id="user-zip"><button id="enterZip" type="submit">SEND</button>`;
 
-    userZip = document.getElementById("user-zip");
-    var enterZip = document.getElementById("enterZip");
-    enterZip.addEventListener("click", function() {
-        var inputuserZip = userZip.value;
-        
-        console.log("What's in inputuserZip ", inputuserZip);
-        var captureZip = {
-            zipCode: inputuserZip
-        }; 
-    });
-}
 
-module.exports = {
-    showWeather,
-    addingZip
-};
+// module.exports = {
+//     showBooksResults,
+//     addingZip
+// };

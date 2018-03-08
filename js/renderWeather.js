@@ -85,13 +85,14 @@ function inputZipcode(){
         captureZip = {
             zipCode: inputuserZip
         }; 
-        addingZip(captureZip).then((data) => {
-            console.log("What's in data ", data);
-        });
+        // addingZip(captureZip).then((data) => {
+        //     console.log("What's in data ", data);
+        // });
 
     });
-}console.log("What's in inputUserZip inside captureZip ", captureZip.zip);
-inputZipcode();
+}
+// console.log("What's in inputUserZip inside captureZip ", captureZip.zip);
+// inputZipcode();
 
 module.exports = {
     showWeather,
