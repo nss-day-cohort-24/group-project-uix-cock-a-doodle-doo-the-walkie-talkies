@@ -1,6 +1,7 @@
 "use strict";
 // console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
+let profile = require('./userProfile');
 
 
 var showNewsDataFunction = document.getElementById("news-data");
@@ -60,13 +61,31 @@ function topImage() {
 showTopNewsImage.innerHTML = topImage();
 
 
-
-var newAllNews;
+var news10Articles;
 $("#viewAllNews").click(() => {
     // console.log("news data div has been clicked");
     //render the dom with the #primaryContainer as empty
-    $('#primaryContainer').html("");
+
+    showTop10();
   });
+
+
+
+
+  function showTop10() {
+    getNews().then((news10Data) =>{
+     news10Articles = news10Data.articles;
+
+    let tenStories = "";
+    let seeMore = document.getElementById("seeMoreNews");
+            for(var i = 0; i < 10; i++){
+                 tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
+                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">See full  article at ${news10Articles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
+            }
+            $('#primaryContainer').html(tenStories);
+        });
+    }
+
 
 
 
