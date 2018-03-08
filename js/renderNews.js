@@ -80,13 +80,19 @@ $("#viewAllNews").click(() => {
     let seeMore = document.getElementById("seeMoreNews");
             for(var i = 0; i < 10; i++){
                  tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
-                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">See full  article at ${news10Articles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
+                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">See full  article at ${news10Articles[i].source.name}</a></li><br>`;
             }
             $('#primaryContainer').html(tenStories);
         });
     }
 
 
+
+    //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
+
+    $('#favorites-heart').click(() => {
+        console.log("SAVE THIS ITEM ${news10Articles[i].title}");
+    });
 
 
 module.exports = {getNews, topImage};
