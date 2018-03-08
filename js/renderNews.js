@@ -1,6 +1,7 @@
 "use strict";
-console.log("renderDOM file is coming through");
+// console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
+let profile = require('./userProfile');
 
 
 var showNewsDataFunction = document.getElementById("news-data");
@@ -48,7 +49,7 @@ var showTopNewsImage = document.getElementById("heroNews");
 function topImage() {
     getNews().then((image) => {
         topArticleImage = image.articles;
-        console.log("top article images", topArticleImage);
+        // console.log("top article images", topArticleImage);
 
         let showImage = "";
         for(var x = 0; x < 1; x++) {
@@ -58,5 +59,34 @@ function topImage() {
     });
 }
 showTopNewsImage.innerHTML = topImage();
+
+
+var news10Articles;
+$("#viewAllNews").click(() => {
+    // console.log("news data div has been clicked");
+    //render the dom with the #primaryContainer as empty
+
+    showTop10();
+  });
+
+
+
+
+  function showTop10() {
+    getNews().then((news10Data) =>{
+     news10Articles = news10Data.articles;
+
+    let tenStories = "";
+    let seeMore = document.getElementById("seeMoreNews");
+            for(var i = 0; i < 10; i++){
+                 tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
+                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">See full  article at ${news10Articles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
+            }
+            $('#primaryContainer').html(tenStories);
+        });
+    }
+
+
+
 
 module.exports = {getNews, topImage};
