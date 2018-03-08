@@ -1,24 +1,16 @@
 "use strict";
 
 console.log("USER PROFILE JS");
+
 let fb = require('./user'),
 firebase = require('firebase/app');
 let $ = require('../lib/node_modules/jquery');
 let config = require('./configure');
 
-// logout button
-
-function logoutButton() {
-    console.log("log out button function");
-}
-logoutButton();
-
-
-
 
 function getNews(currentUser) {
     return $.ajax({
-      url: `${config.getFBsettings().databaseURL}/news-article.json?orderBy="uid"&equalTo="${currentUser}"`
+      url: `${config.getFBsettings().databaseURL}/userInfo.json?orderBy="uid"&equalTo="${currentUser}"`
     }).done((userNewsData) => {
       return userNewsData;
     });
@@ -26,32 +18,27 @@ function getNews(currentUser) {
 
 // saves / favorites
 function saves() {
-    console.log("saves function is showing up");
-
+    console.log("saves function clicked");
 }
-saves();
 
 // delete and edit buttons
-$(document).on("click", ".delete-btn", function deleteBtn(deleteButton) {
-    console.log("delete button function");
+function deleteBtn(uid) {
+    console.log("delete button clicked");
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/news-articles.json"`,
-        type: 'DELETE',
-        data: JSON.stringify(deleteButton),
-        dataType: 'json'
+        url: `${firebase.getFBsettings().databaseURL}/userInfo.json`,
+        method: 'DELETE'
     }).done((db) => {
         console.log("db", db);
         return db;
     });
-});
+}
 
 function edit() {
-    console.log("edit button function");
+    console.log("edit button clicked");
 }
-edit();
 
 
 
 
 
-module.exports = {logoutButton, saves, edit};
+module.exports = {getNews, saves, deleteBtn, edit};

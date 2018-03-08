@@ -37,26 +37,7 @@ $("#logout").click(() => {
 
 function sendToFirebase(){
       let userBuild = userObj.buildUserObj();
+      //need to add logic to not add to firebase if user is already in firebase by UID
       addUser.addUser(userBuild);
 }
-
-  
-function loadInfoToDOM() {
-    console.log("Need to load some info");
-    let currentUser = login.getUser();
-    userProfile.getNews(currentUser).then((newsData) => {
-
-        var hero = document.getElementById("heroNews");
-
-        console.log("i got songs buddy", newsData);
-        // var idArray = Object.keys(songData);
-        // idArray.forEach((key) => {
-        //   songData[key].id = key;
-        // });
-        hero.innerHTML = newsData;
-      });
-  }
-  loadInfoToDOM();
-
-
 
