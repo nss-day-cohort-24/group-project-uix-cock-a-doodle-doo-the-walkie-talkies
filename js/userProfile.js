@@ -14,12 +14,11 @@ if the user clicks 'profile' button (id=userPic), the DOM will be rendered to sh
 saved items will be in the div labeled "domContainer"
 */
 
-let profileButton = document.getElementById("userPic");
 
-
-profileButton.addEventListener("click", function userProfile() {
-    console.log("user profile function is working");
-});
+$("#userPic").click(() => {
+    console.log("profile image clicked");
+    //render the dom with the #primaryContainer as empty
+  });
 
 
 function getNews(currentUser) {
