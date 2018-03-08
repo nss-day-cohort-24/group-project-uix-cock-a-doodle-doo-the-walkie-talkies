@@ -20,9 +20,13 @@ function getWeather() {
 
 //add zipcode information to Firebase. Since this info need to be overwritten we use PUT and not POST. POST is for appending not overwriting.
 function addingZip(captureZip) {
+    console.log("what's in captureZip inside addingZip ", captureZip);
+    let test = `${firebase.getFBsettings().databaseURL}/userInfo/-L71KA9vAHe-eK6W5T7a.json`;
+    console.log("url", test);
+    
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userInfo/-L71KA9vAHe-eK6W5T7a/zip.json`,
-        type: 'PUT',
+        url: `${firebase.getFBsettings().databaseURL}/userInfo/-L71KA9vAHe-eK6W5T7a.json`,
+        type: 'POST',
         data: JSON.stringify(captureZip),
         dataType: 'json'
     }).done((zipData) => {
@@ -67,21 +71,23 @@ showWeather();
 var userZip = 0;
 
 function inputZipcode(){
-var zipInputfield = document.getElementById("zip-code");
+    var zipInputfield = document.getElementById("zip-code");
 
-console.log("What is in zipInputfield ", zipInputfield);
+    console.log("What is in zipInputfield ", zipInputfield);
 
     zipInputfield.innerHTML = `<input type="text" name="zipcode" id="user-zip"><button id="enterZip" type="submit">SEND</button>`;
 
     userZip = document.getElementById("user-zip");
     var enterZip = document.getElementById("enterZip");
+
     enterZip.addEventListener("click", function() {
         var inputuserZip = userZip.value;
         
         console.log("What's in inputuserZip ", inputuserZip);
         var captureZip = {
-            zipCode: inputuserZip
+            zip: inputuserZip
         }; 
+            console.log("What's in inputUserZip inside captureZip ", captureZip);
     });
 }
 
