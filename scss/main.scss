@@ -18,6 +18,10 @@ body{
     padding: 0;
 }
 
+// h5 {
+//     font-size: 16px;
+// }
+
 nav{
     background-color: $cream;
     color: $rust;
@@ -59,6 +63,10 @@ footer a{
 footer a:hover {
     color: $cream;
     text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
 }
 
 
