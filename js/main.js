@@ -25,14 +25,8 @@ $("#login").click(function(){
     });
 });
 
-$("#logout").click(() => {
-    console.log("logout clicked");
-    login.googleLogOut();
-    $("#userPic").addClass("d-none");
-    $("#login").removeClass("d-none");
-    $("#logout").addClass("d-none");
-    $("#secondaryLogin").removeClass("d-none");
-  });
+
+//took out the logout function code and put into userProfile.js
 
 
 function sendToFirebase(){
