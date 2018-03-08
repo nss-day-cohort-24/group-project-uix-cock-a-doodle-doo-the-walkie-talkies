@@ -31,10 +31,13 @@
         <div id="primaryContainer" class="container-fluid">
             <div class="row">
                 <div id="heroNews" class="col-8"></div>
-                
                 <div id="weather" class="col-4">
-                </div><input type="text" name="zipcode" id="user-zip">
-                <button id="enterZip" type="submit">SEND</button>
+                    <div id="weatherBlock"></div>
+                    <div id="zipInput">
+                    <input type="text" name="zipcode" placeholder="Enter zip code"  id="user-zip">
+                    <button id="enterZip" class="btn btnGrey" type="submit">SUBMIT</button>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div id="news-data" class="col-12"></div>

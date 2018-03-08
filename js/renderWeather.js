@@ -6,7 +6,7 @@ userData = require("./user");
 
 // &apiKey=f003b59e8e7d506d9b387f115f63483e
 
-var showWeatherData = document.getElementById("weather");
+var showWeatherData = document.getElementById("weatherBlock");
 
 //get weather information from API
 function getWeather() {
@@ -60,7 +60,7 @@ function showWeather() {
     });
 }
 
-showWeather();
+
 
 // creating input field for html. 
 // Add event listener to get zip information.
@@ -86,6 +86,7 @@ function inputZipcode(){
     });
 }
 
+showWeather();
 inputZipcode();
 
 module.exports = {
