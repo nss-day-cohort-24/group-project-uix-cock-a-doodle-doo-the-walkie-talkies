@@ -7,7 +7,7 @@ let fireConfig = require("./configure"),
       build = require('./buildFBObj');
 
 function addUser(userObj) {
-	console.log("add user to firebase", userObj);
+	// console.log("add user to firebase", userObj);
 	return $.ajax({
       url: `${fireConfig.getFBsettings().databaseURL}/userInfo.json`,
       type: 'POST',

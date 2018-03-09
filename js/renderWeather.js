@@ -41,7 +41,7 @@ function showWeather() {
         weatherData.main.temp_min.toFixed(0) + " Max " + weatherData.main.temp_max.toFixed(0);
         weatherDetails = weatherData.weather[0].description + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
 
-        showWeatherData.innerHTML = `<h2 style="color: #ffffff; font-weight: bold;">${currentWeather}</h2><p style="color: #ffffff;">${weatherDetails}</p>`;
+        showWeatherData.innerHTML = `<h2>Today's Weather:</h2><p id="temp">${currentWeather}</p><p>${weatherDetails}</p>`;
 
         // addingWeatherFB(tacoWeather);
         // addWeatherFB(); 
