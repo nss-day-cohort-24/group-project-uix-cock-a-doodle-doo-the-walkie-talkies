@@ -14,6 +14,17 @@ if the user clicks 'profile' button (id=userPic), the DOM will be rendered to sh
 saved items will be in the div labeled "domContainer"
 */
 
+let profile = document.getElementById("primaryContainer");
+
+$('#userPic').click(() => {
+    console.log("SUP USER");
+    userProfile();
+});
+
+function userProfile() {
+    $('#primaryContainer').html("Saved items go here!");
+}
+
 
 function getNews(currentUser) {
     return $.ajax({
@@ -23,10 +34,6 @@ function getNews(currentUser) {
     });
   }
 
-// saves / favorites
-function saves() {
-    console.log("saves function clicked");
-}
 
 // delete and edit buttons
 function deleteBtn(uid) {
@@ -56,4 +63,4 @@ $("#logout").click(() => {
     $("#secondaryLogin").removeClass("d-none");
   });
 
-module.exports = {getNews, saves, deleteBtn, edit};
+module.exports = {getNews, deleteBtn, edit};
