@@ -89,6 +89,13 @@ $("#viewAllNews").click(() => {
     showTop10();
   });
 
+  
+$("#news-icon").click(() => {
+    console.log("news icon has been clicked");
+    showTop10();
+  });
+
+
 
   function showTop10() {
     getNews().then((news10Data) =>{
