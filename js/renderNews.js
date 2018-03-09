@@ -39,35 +39,27 @@ let seeMore = document.getElementById("seeMoreNews");
             // console.log(i, newsArticles[i]);
              newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
              <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">Read full article from ${newsArticles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart-${i}" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
-
-
-
-             
-    //     showNewsDataFunction.addEventListener("click", (event) => {
-    //         if(event.target.id == `favorites-heart-${i}`) {
-    //             saveNews();
-    //         }else {
-    //             console.log("noooooooooooo");
-
-            heart = document.getElementById(`favorites-heart-${i}`);
-
             }
 
-        $('#news-data').html(newsStories);
-        newsArray = [newsArticles[i].title];
-
-        // }
-    });
-
-    $('#favorites-heart-1').click((event) => {
-
-        console.log("event passing through", event);
-    });
+            $('#news-data').html(newsStories);
+            newsArray = [newsArticles[i].title];
+        }).then(()=>{
+            let articles = document.getElementsByClassName('news-articles');
+    
+            for(var i = 0; i < articles.length; i++){
+                heart = document.getElementById(`favorites-heart-${i+1}`);
+                getHeart(heart);
+            }
+            
+        });
 
 }
 showNewsDataFunction.innerHTML = showNews();
-
-console.log("NEWS ARRAY: ", newsArray);
+function getHeart(heart){
+    $(heart).on('click', (event) => {
+        console.log("event passing through", event.target.id);
+    });
+}
 
 
    //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
@@ -122,10 +114,18 @@ $("#viewAllNews").click(() => {
     let seeMore = document.getElementById("seeMoreNews");
             for(var i = 0; i < 10; i++){
                  tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
-                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">Read full article from ${news10Articles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
+                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">Read full article from ${news10Articles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart-${i}" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
             }
             $('#primaryContainer').html(tenStories);
 
+        }).then(()=>{
+            let articles = document.getElementsByClassName('news-articles');
+    
+            for(var i = 0; i < articles.length; i++){
+                heart = document.getElementById(`favorites-heart-${i+1}`);
+                getHeart(heart);
+            }
+            
         });
     }
     // showNewsDataFunction.addEventListener("click", function onClick(event) {
