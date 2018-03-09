@@ -11,7 +11,7 @@ var showWeatherData = document.getElementById("weatherBlock");
 //get weather information from API
 function getWeather() {
     return $.ajax({
-        url: `http://api.openweathermap.org/data/2.5/weather?zip=37211,us&units=imperial&appid=f003b59e8e7d506d9b387f115f63483e`
+        url: `http://api.openweathermap.org/data/2.5/weather?zip=37210,us&units=imperial&appid=f003b59e8e7d506d9b387f115f63483e`
     }).done((weatherData) => {
         return weatherData;
     });   
@@ -32,14 +32,16 @@ function addingZip(captureZip) {
 
 var currentWeather;
 var weatherDetails;
+var cityId = 4481519;
 
 // showing weather on the DOM
 function showWeather() {
         getWeather().then((weatherData) => {
-        currentWeather = weatherData.main.temp.toFixed(0) + ' &#8457;';
-        weatherDetails = weatherData.weather[0].icon + " " + weatherData.weather[0].description + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
+        currentWeather = weatherData.main.temp.toFixed(0) + ' &#8457;' + `<br><br>` +  " Min " +
+        weatherData.main.temp_min.toFixed(0) + " Max " + weatherData.main.temp_max.toFixed(0);
+        weatherDetails = weatherData.weather[0].description + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
 
-        showWeatherData.innerHTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
+        showWeatherData.innerHTML = `<h2 style="color: #ffffff; font-weight: bold;">${currentWeather}</h2><p style="color: #ffffff;">${weatherDetails}</p>`;
 
         // addingWeatherFB(tacoWeather);
         // addWeatherFB(); 
