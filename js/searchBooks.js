@@ -20,7 +20,7 @@ var bookList = `<div id="readingQuote" class="sageBG">
         </div>
         </div>
     </div>`;
-
+    var booksForList = [];
 
 // FUNCTIONS
 
@@ -63,15 +63,14 @@ function getBooks(bookInput) {
     }).done((bookReturn) => {
         // console.log("Book search results", bookReturn);
         var bookResults = [];
-        var booksForList = [];
         bookResults = JSON.parse(bookReturn);
         booksForList = bookResults.docs;
         // let key = booksForList.keys;
         console.log("book search results parsed", booksForList);
-        bookList += `<div style="padding: 1rem;"><h2>Top 10 Book Results for <span style="color: #C63D0F;">${bookInput}</span>:</h2><hr />`;
-        for(let item in booksForList){
+        bookList += `<div style="padding: 1rem;"><h2>Top 10 Book Results for <span id="copyBook;" style="color: #C63D0F;">${bookInput}</span>:</h2><hr />`;
+        for(let item=0; item<booksForList.length; item++){
             bookList += `<div class="row">
-            <div class="col-auto"><i class="far fa-heart book-hearts" style="text-decoration: none; color: #C63D0F; opacity: 0.7;"></i>
+            <div class="col-auto"><i id="${item}" class="far fa-heart book-hearts" style="text-decoration: none; color: #C63D0F; opacity: 0.7;"></i>
             </div>
             <div class="col-10">
                     <h3 style="color: #7E8F7C;">${booksForList[item].title}</h3>
@@ -81,9 +80,31 @@ function getBooks(bookInput) {
         }
         bookList += `</div>`;
         // console.log("bookList: ", bookList);
-        return bookList;
+        return bookList; 
     });
+        // .then((bookReturn)=>{
+        //      // console.log("show me anything");
+        //     var bookResults = [];
+        //     var booksForList = [];
+        //     bookResults = JSON.parse(bookReturn);
+        //     booksForList = bookResults.docs;
+        //     for(let item=0; item<booksForList.length; item++){
+        //     let bookObj = {
+        //         title: booksForList[item].title,
+        //         author: booksForList[item].author_name,
+        //         first_publish_year: booksForList[item].first_publish_year,
+        //         uid: userData.getUser()
+        //     };
+        //     console.log("booksObj: ", bookObj);
+        //     return bookObj;  
+        // }
+        // });          
 }
+
+function returnBookList(){
+    return booksForList;
+}
+
 
 $("#books-icon").click(() => {
     // console.log("book icon has been clicked");
@@ -98,5 +119,6 @@ searchBooks();
 module.exports = {
     searchBooks,
     getBooks,
-    renderHomeBooks
+    renderHomeBooks, 
+    returnBookList
 };
