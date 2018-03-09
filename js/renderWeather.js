@@ -37,11 +37,11 @@ var cityId = 4481519;
 // showing weather on the DOM
 function showWeather() {
         getWeather().then((weatherData) => {
-        currentWeather = weatherData.main.temp.toFixed(0) + ' &#8457;' + `<br><br>` +  " Min " +
-        weatherData.main.temp_min.toFixed(0) + " Max " + weatherData.main.temp_max.toFixed(0);
-        weatherDetails = weatherData.weather[0].description + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
+        currentWeather = weatherData.main.temp.toFixed(0) + ' &#8457;';
+        weatherDetails = weatherData.weather[0].description + `<br><br>` +  " Min " +
+        weatherData.main.temp_min.toFixed(0) + " Max " + weatherData.main.temp_max.toFixed(0) + `<div id="zip-code"></div>`;// weather details like sunny, partly cloudy
 
-        showWeatherData.innerHTML = `<h2>Today's Weather:</h2><p id="temp">${currentWeather}</p><p>${weatherDetails}</p>`;
+        showWeatherData.innerHTML = `<h2 class="temp">Today's Weather:</h2><p id="temp">${currentWeather}</p><p class="temp">${weatherDetails}</p>`;
 
         // addingWeatherFB(tacoWeather);
         // addWeatherFB(); 
