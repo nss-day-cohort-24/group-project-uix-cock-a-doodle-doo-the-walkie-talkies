@@ -45,23 +45,8 @@ let seeMore = document.getElementById("seeMoreNews");
 showNewsDataFunction.innerHTML = showNews();
 
 
-///////////////////////////******************///////////////////////////
-//  WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
-///////////////////////////******************///////////////////////////
 function saveNews() {
-    addNews();
-}
-
-function addNews(newsObj) {
-    console.log("add news articles to firebase", newsObj);
-    return $.ajax({
-      url: `${fireConfig.getFBsettings().databaseURL}/newsArticles.json`,
-      type: 'POST',
-      data: JSON.stringify(newsObj),
-      dataType: 'json'
-   }).done((userNews) => {
-      return userNews;
-   });
+    console.log("SAVE THIS ARTICLE");
 }
 
 showNewsDataFunction.addEventListener("click", function onClick(event) {
@@ -72,9 +57,9 @@ showNewsDataFunction.addEventListener("click", function onClick(event) {
     }
 });
 
-///////////////////////////******************///////////////////////////
-//////////  TOP HEADLINE IMAGE WILL APPEAR AT THE TOP WHEN USER LOGS IN
-///////////////////////////******************///////////////////////////
+
+
+
 var topArticleImage;
 var showTopNewsImage = document.getElementById("heroNews");
 
@@ -94,10 +79,6 @@ function topImage() {
 showTopNewsImage.innerHTML = topImage();
 
 
-
-///////////////////////////******************///////////////////////////
-//  RENDER TOP 10 NEWS ARTICLES 
-///////////////////////////******************///////////////////////////
 var news10Articles;
 $("#viewAllNews").click(() => {
     // console.log("news data div has been clicked");
@@ -123,9 +104,23 @@ $("#viewAllNews").click(() => {
     }
 
 
+    function addNews(newsObj) {
+        console.log("add news articles to firebase", newsObj);
+        return $.ajax({
+          url: `${fireConfig.getFBsettings().databaseURL}/newsArticles.json`,
+          type: 'POST',
+          data: JSON.stringify(newsObj),
+          dataType: 'json'
+       }).done((userNews) => {
+          return userNews;
+       });
+    }
 
 
 
+    //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
+
+    // .click(run);
 
 
-module.exports = {getNews, topImage, addNews, saveNews};
+module.exports = {getNews, topImage, addNews};
