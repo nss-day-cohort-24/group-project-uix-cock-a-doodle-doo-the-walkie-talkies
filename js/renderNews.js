@@ -72,7 +72,7 @@ function topImage() {
 
         let showImage = "";
         for(var x = 0; x < 1; x++) {
-            showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}"></a><div><p>&nbsp;</p><a href="${topArticleImage[0].url}" ><h2 style="color: #FDF3E7">${topArticleImage[0].title}</h2></a></div>`;
+            showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}"></a><div><p>&nbsp;</p><a href="${topArticleImage[0].url}" ><h2 style="color: #FDF3E7">${topArticleImage[0].title}&nbsp;»</h2></a></div>`;
         }
         $('#heroNews').html(showImage);
         
