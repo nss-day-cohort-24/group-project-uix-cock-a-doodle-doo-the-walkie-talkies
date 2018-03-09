@@ -26,5 +26,18 @@ function buildNewsObj(news) {
     return newsObj;
 }
 
+function buildBookObj(id){
+     // console.log("show me anything");
+    var booksForList = books.returnBookList();
+    var uid = user.getUser();
+    let bookObj = {
+        title: booksForList[id].title,
+        author: booksForList[id].author_name[0],
+        first_publish_year: booksForList[id].first_publish_year,
+        uid: uid.uid
+    };
+    console.log("booksObj: ", bookObj);
+    return bookObj; 
+}     
 
-module.exports = {buildUserObj, buildNewsObj};
+module.exports = {buildUserObj, buildNewsObj, buildBookObj};
