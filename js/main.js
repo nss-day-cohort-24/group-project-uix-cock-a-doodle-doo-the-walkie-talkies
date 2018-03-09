@@ -12,6 +12,7 @@ let $ = require('jquery'),
     addUser = require('./fbAddUser.js'),
     build = require('./buildFBObj'),
     books = require('./searchBooks'),
+    fireConfig = require('./configure'),
     footer = require('./footerIcons');
 
 //---------LOGIN-----------//
@@ -39,12 +40,24 @@ function sendToFirebase(){
 /////////////--------SAVE BUTTONS----------------//////////
 $(document).on("click", ".book-hearts", function() {
     console.log("clicked save new book");
-    let bookObj = build.buildBookObj();
-    books.addBook(bookObj)
-    .then((bookID) => {
-    //   loadSavedBooks();
-    });
+    console.log(event.target.id);
+    var id = event.target.id;
+    // let bookInput = $("#copyBook");
+    // console.log("copied Book input", bookInput);
+    // books.getBooks(bookInput)
+    var bookObj = build.buildBookObj(id);
+    sendBooksToFirebase(bookObj);
   });
+
+  function sendBooksToFirebase(bookObj){
+    return $.ajax({
+        url: `${fireConfig.getFBsettings().databaseURL}/booksInfo.json`,
+        type: 'POST',
+        data: JSON.stringify(bookObj),
+        dataType: 'json'
+     });
+  }
+  
 
 /////////////-------SECONDARY BOOK SEARCH---------/////////
 var bookList;
