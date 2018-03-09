@@ -26,7 +26,7 @@ getNews().then((newsData) =>{
  // check to see when i = 10, or break a loop when i is defined as 10
 let newsStories = "";
 let seeMore = document.getElementById("seeMoreNews");
-        for(var i = 0; i < 3; i++){
+        for(var i = 1; i < 4; i++){
             // console.log(i, newsArticles[i]);
              newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
              <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <a href="#" style="text-decoration: none; color: #C63D0F;"><i class="far fa-heart" id="favorites-heart"></i></a></li><br>`;
@@ -53,7 +53,7 @@ function topImage() {
 
         let showImage = "";
         for(var x = 0; x < 1; x++) {
-            showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}">`;
+            showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}"></a><div><h2 style="color: #FDF3E7">${topArticleImage[0].title}</h2></div>`;
         }
         $('#heroNews').html(showImage);
     });
