@@ -69,7 +69,7 @@ return tempLoad;
 
 
 var detailLoad;
-function addWeatherFB(){);
+function addWeatherFB(){
     // getWeather().then((nashData) => {
     //     let wetObject = loadWeather(nashData.list[0].main.temp, nashData.list[0].weather[0].description);
     //     addingWeatherFB(wetObject);
