@@ -1,5 +1,5 @@
 "use strict";
-console.log("configure file for Firebase");
+// console.log("configure file for Firebase");
 
 // REQUIRES
 
@@ -18,7 +18,7 @@ var config = {
   
   
   firebase.getFBsettings = function(){
-       console.log("getFBsettings", config);
+    //    console.log("getFBsettings", config);
        return config;
   };
   

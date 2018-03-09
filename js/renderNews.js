@@ -102,7 +102,13 @@ $("#viewAllNews").click(() => {
 
         });
     }
-
+    // showNewsDataFunction.addEventListener("click", function onClick(event) {
+    //     if(event.target.id == "favorites-heart") {
+    //         saveNews();
+    //     }else {
+    //         // console.log("noooooooooooo");
+    //     }
+    // });
 
     function addNews(newsObj) {
         console.log("add news articles to firebase", newsObj);
