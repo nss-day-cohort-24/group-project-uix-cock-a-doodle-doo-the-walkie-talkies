@@ -5,6 +5,8 @@ let profile = require('./userProfile');
 let user = require('./user');
 let fireConfig = require("./configure"),
       build = require('./buildFBObj');
+let userLog = user.getUser();
+console.log("user -- ", user.uid);
 
 
 
@@ -19,7 +21,7 @@ function getNews() {
     });
 }
 
-var newsArticles;
+var newsArticles = [];
 var newsArray = [];
 var newsStories = "";
 var heart;
@@ -51,13 +53,13 @@ let seeMore = document.getElementById("seeMoreNews");
                 heart = document.getElementById(`favorites-heart-${i+1}`);
                 
                 console.log("articles", articles[i]);
-                let pushNews = {
-                    title: "",
-                    description: "",
-                    source: "",
-                    uid: ""
-                };
-                getHeart(heart, pushNews);
+                // let pushNews = {
+                //     title: "",
+                //     description: "",
+                //     source: "",
+                //     uid: ""
+                // };
+                getHeart(heart);
             }
             
         });
@@ -65,33 +67,25 @@ let seeMore = document.getElementById("seeMoreNews");
 }
 showNewsDataFunction.innerHTML = showNews();
 
-function getArticle() {
-    console.log("getArticle");
-}
 
-
+var save;
 function getHeart(heart, news){
     $(heart).on('click', (event) => {
+       save = event.target.id;
         console.log("event passing through", event.target.id);
         return $.ajax({
             url: `${fireConfig.getFBsettings().databaseURL}/favoredNews.json`,
             type: 'POST',
             data: JSON.stringify(news),
             datayType: 'json'
-        }).done((newsData) => {
-            return newsData;
-     });
+        });
     });
 }
 
-
+function getArticle() {
+    return newsArticles;
+}
    //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
-
-
-
-
-
-
 
 
 var topArticleImage;
