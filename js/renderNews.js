@@ -72,7 +72,7 @@ function topImage() {
 
         let showImage = "";
         for(var x = 0; x < 1; x++) {
-            showImage += `<a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="Link to ${topArticleImage[0].title}"><img width="100%" src="${topArticleImage[0].urlToImage}"></a><div><p>&nbsp;</p><a href="${topArticleImage[0].url}" ><h2 style="color: #FDF3E7">${topArticleImage[0].title}&nbsp;»</h2></a></div>`;
+            showImage += `<div id="heroImg"><a href="${topArticleImage[0].url}" alt="Link to ${topArticleImage[0].title}" title="${topArticleImage[0].title}"><img style="max-width: 100%;" src="${topArticleImage[0].urlToImage}"></a></div><div><p>&nbsp;</p><a href="${topArticleImage[0].url}" ><h2 style="color: #FDF3E7">${topArticleImage[0].title}&nbsp;»</h2></a></div>`;
         }
         $('#heroNews').html(showImage);
         
@@ -89,10 +89,10 @@ $("#viewAllNews").click(() => {
   });
 
   
-$("#news-icon").click(() => {
-    console.log("news icon has been clicked");
-    showTop10();
-  });
+// $("#news-icon").click(() => {
+//     console.log("news icon has been clicked");
+//     $("#primaryContainer").html(showTop10())
+//   });
 
 
 
@@ -100,7 +100,7 @@ $("#news-icon").click(() => {
     getNews().then((news10Data) =>{
      news10Articles = news10Data.articles;
 
-    let tenStories = "";
+    let tenStories = `<h1 style="margin-bottom: 1rem;">Trending News</h1>`;
     let seeMore = document.getElementById("seeMoreNews");
             for(var i = 0; i < 10; i++){
                  tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
@@ -131,4 +131,4 @@ $("#news-icon").click(() => {
     }
 
 
-module.exports = {getNews, topImage, addNews};
+module.exports = {getNews, topImage, addNews, showNews, showTop10};

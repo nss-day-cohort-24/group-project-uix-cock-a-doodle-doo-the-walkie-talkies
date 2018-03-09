@@ -43,7 +43,7 @@ function getBooks(bookInput) {
     return $.ajax({
         url: `http://openlibrary.org/search.json?q='${bookInput}'&limit=10`
     }).done((bookReturn) => {
-        console.log("Book search results", bookReturn);
+        // console.log("Book search results", bookReturn);
         var bookResults = [];
         var booksForList = [];
         bookResults = JSON.parse(bookReturn);
@@ -74,9 +74,17 @@ function getBooks(bookInput) {
     });
 }
 
+$("#books-icon").click(() => {
+    console.log("book icon has been clicked");
+    getBooks('');
+    $("#primaryContainer").html(bookList);
+  });
+
+
 searchBooks();
 
 module.exports = {
     searchBooks,
-    getBooks
+    getBooks,
+    renderHomeBooks
 };

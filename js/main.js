@@ -10,7 +10,8 @@ let $ = require('jquery'),
     date = require('./dateToday'),
     addUser = require('./fbAddUser.js'),
     userObj = require('./buildFBObj'),
-    books = require('./searchBooks');
+    books = require('./searchBooks'),
+    footer = require('./footerIcons');
 
 
 $("#login").click(function(){
@@ -106,5 +107,17 @@ $(document).on("keyup", "#bigBookSearch", function innerBooks(e){
         $("#primaryContainer").html(bookList);
     });
 }
+});
+
+//FOOTER ICONS
+document.addEventListener('DOMContentLoaded', function () {
+    $('#home-icon').on('click', function () {
+      
+    renderNews.showNews();
+    renderNews.topImage();
+    renderWeather.showWeather();
+    date.showDate();
+    books.searchBooks();
+});
 });
 
