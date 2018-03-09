@@ -126,6 +126,19 @@ h3{
     padding: 1em;
 }
 
+.sageBG{
+    background-color: $sage;
+    padding: 0rem 1.5rem;
+}
+
+.quote{
+    width: 60%;
+    padding: 1em;
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
 //ID styles
 #news-data li {
     list-style-type: none;

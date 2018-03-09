@@ -19,16 +19,22 @@ function renderHomeBooks() {
 }
 
 function searchBooks(){
-    renderHomeBooks();
-        $("#bookSearchBtn").click(()=>{
-            var bookInput = document.getElementById("bookSearch").value;
-            console.log("books submit button clicked with value: ", bookInput);
+    renderHomeBooks(); 
+    $("#bookSearchBtn").click(()=>{
+        var bookInput = document.getElementById("bookSearch").value;
+        // console.log("books submit button clicked with value: ", bookInput);
         getBooks(bookInput)
     .done((bookReturn)=>{
-        console.log("book return is passed into render DOM search results");
+        // console.log("book return is passed into render DOM search results");
         $("#primaryContainer").html(bookList);
         });
-        });
+    });
+    $( "#bookSearch").keyup((e)=> {
+        var code = e.which;
+        if(code === 13){
+        $("#bookSearchBtn").click();
+        }
+    });
 }
 
 //get Book information from API
@@ -43,28 +49,34 @@ function getBooks(bookInput) {
         bookResults = JSON.parse(bookReturn);
         booksForList = bookResults.docs;
         console.log("book search results parsed", booksForList);
-        bookList = `<h2>Top 10 Book Results for <span style="color: #C63D0F;">${bookInput}</span>:</h2><hr />`;
+        bookList = `<div id="readingQuote" class="sageBG">
+            <div class="quote">
+                <h1 style="color: #FDF3E7;"><em>Not all readers are leaders, but all leaders are readers.</em></h1>
+                <p style="text-align: right;">-President Harry S. Truman</p>
+            </div>
+        </div>
+        <div class="sageBG" style="padding-bottom: 1rem;">
+            <h2>Find A New Favorite Book:</h2>
+            <div class="input-group input-group-lg mb-3">
+            <input id="bigBookSearch" type="text" class="form-control" placeholder ="Enter a title or author" aria-label="BookSearch" aria-describedby="inputGroup-sizing-lg"><div class="input-group-append">
+            &nbsp;<button type="button" class="btn btnGrey btn-lg" id="bigBookSearchBtn">Search</button>
+            </div>
+            </div>
+        </div>
+        <div style="padding: 1rem;">
+    <h2>Top 10 Book Results for <span style="color: #C63D0F;">${bookInput}</span>:</h2><hr />`;
         for(let item in booksForList){
-            bookList += `<div><h3 style="color: #7E8F7C;">${booksForList[item].title}</h3><p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p></div>`;
+            bookList += `<h3 style="color: #7E8F7C;">${booksForList[item].title}</h3><p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>`;
         }
-        console.log("bookList: ", bookList);
-        return bookReturn;
+        bookList += `</div>`;
+        // console.log("bookList: ", bookList);
+        return bookList;
     });
 }
-
-
-
-// // building DOM for books search results
-// function showBooksResults() {
-//     getBooks().then((bookReturn) => {
-//     $("#primaryContainer").HTML = `<p>${currentWeather}</p><p>${weatherDetails}</p>`;
-
-//     console.log("What are the books results?", bookReturn);
-// });
-// }
 
 searchBooks();
 
 module.exports = {
-    searchBooks
+    searchBooks,
+    getBooks
 };
