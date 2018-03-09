@@ -9,6 +9,7 @@ $moss: #7E8F7C;
 $orange: #EB7118;
 $beige: #DDCEC4;
 $sage: #7EAB93;
+$white: #ffffff;
 
 //Base Styles
 body{
@@ -130,16 +131,16 @@ h3{
 
 .btnGrey{
     background-color: $grey;
-    color: white;
+    color: $white;
 }
 .btnGrey{
     background-color: $grey;
-    color: white;
+    color: $white;
 }
 
 .btnRust{
     background-color: $rust;
-    color: white;
+    color: $white;
     padding: 1em;
 }
 
@@ -154,6 +155,10 @@ h3{
     text-align: center;
     margin-left: auto; 
     margin-right: auto;
+}
+/* use for profile list  */
+.item-list {
+    width: auto;
 }
 
 .footer-row{
@@ -188,11 +193,11 @@ h3{
 #temp{
     font-size: 5rem;
     line-height: 6rem;
-    color: #ffffff;
+    color: $white;
 }
 
 .temp {
-    color: #ffffff;
+    color: $white;
 }
 
 #heroImg{
