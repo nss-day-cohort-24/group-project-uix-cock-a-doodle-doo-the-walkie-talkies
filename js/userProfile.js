@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("USER PROFILE JS");
+// console.log("USER PROFILE JS");
 
 let login = require('./user'),
 firebase = require('firebase/app');
@@ -30,25 +30,25 @@ function saves() {
 
 // delete and edit buttons
 function deleteBtn(uid) {
-    console.log("delete button clicked");
+    // console.log("delete button clicked");
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userInfo.json`,
         method: 'DELETE'
     }).done((db) => {
-        console.log("db", db);
+        // console.log("db", db);
         return db;
     });
 }
 
 function edit() {
-    console.log("edit button clicked");
+    // console.log("edit button clicked");
 }
 
 
 
 ///////////////LOGOUT BUTTON 
 $("#logout").click(() => {
-    console.log("logout clicked");
+    // console.log("logout clicked");
     login.googleLogOut();
     $("#userPic").addClass("d-none");
     $("#login").removeClass("d-none");
