@@ -2,8 +2,10 @@
 // console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
 let profile = require('./userProfile');
+let user = require('./user');
 let fireConfig = require("./configure"),
       build = require('./buildFBObj');
+
 
 
 var showNewsDataFunction = document.getElementById("news-data");
@@ -37,8 +39,7 @@ getNews().then((newsData) =>{
 let seeMore = document.getElementById("seeMoreNews");
         for(var i = 1; i < 4; i++){
             // console.log(i, newsArticles[i]);
-             newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
-             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">Read full article from ${newsArticles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart-${i}" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
+             newsStories += `<div><li class="news-articles"><h3>${newsArticles[i].title}</h3></li><li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">Read full article from ${newsArticles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart-${i}" style="text-decoration: none; color: #C63D0F;"></i></li></div><br>`;
             }
 
             $('#news-data').html(newsStories);
@@ -48,16 +49,37 @@ let seeMore = document.getElementById("seeMoreNews");
     
             for(var i = 0; i < articles.length; i++){
                 heart = document.getElementById(`favorites-heart-${i+1}`);
-                getHeart(heart);
+                
+                console.log("articles", articles[i]);
+                let pushNews = {
+                    title: "",
+                    description: "",
+                    source: "",
+                    uid: ""
+                };
+                getHeart(heart, pushNews);
             }
             
         });
 
 }
 showNewsDataFunction.innerHTML = showNews();
-function getHeart(heart){
+
+function getArticle() {
+    console.log("getArticle");
+}
+
+
+function getHeart(heart, news){
     $(heart).on('click', (event) => {
         console.log("event passing through", event.target.id);
+       
+        $.ajax({
+            url: `${fireConfig.getFBsettings().databaseURL}/favoredNews.json`,
+            type: 'POST',
+            data: JSON.stringify(news),
+            datayType: 'json'
+        });
     });
 }
 
@@ -124,6 +146,8 @@ $("#viewAllNews").click(() => {
             for(var i = 0; i < articles.length; i++){
                 heart = document.getElementById(`favorites-heart-${i+1}`);
                 getHeart(heart);
+
+
             }
             
         });
