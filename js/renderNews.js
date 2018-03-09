@@ -18,6 +18,8 @@ function getNews() {
 }
 
 var newsArticles;
+var newsArray = [];
+var newsStories = "";
 
 function showNews() {
 getNews().then((newsData) =>{
@@ -26,24 +28,24 @@ getNews().then((newsData) =>{
 
  // to get only 10 items to show:
  // check to see when i = 10, or break a loop when i is defined as 10
-let newsStories = "";
+
 let seeMore = document.getElementById("seeMoreNews");
         for(var i = 1; i < 4; i++){
             // console.log(i, newsArticles[i]);
              newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
-             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
+             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
         }
         $('#news-data').html(newsStories);
-        // $('.favorites-heart').each(function (){
-        //     console.log("here it is", $(this));
-        //     $(this).click(run);
-        // });
-        // console.log("heart", saveHeart);
-        // $('#favorites-heart').click(run);
+        newsArray = [newsArticles[i].title];
     });
 }
 showNewsDataFunction.innerHTML = showNews();
 
+
+console.log("NEWS ARRAY: ", newsArray);
+
+
+   //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
 
 function saveNews() {
     console.log("SAVE THIS ARTICLE");
@@ -53,7 +55,7 @@ showNewsDataFunction.addEventListener("click", function onClick(event) {
     if(event.target.id == "favorites-heart") {
         saveNews();
     }else {
-        // console.log("noooooooooooo");
+        console.log("noooooooooooo");
     }
 });
 
@@ -86,6 +88,13 @@ $("#viewAllNews").click(() => {
 
     showTop10();
   });
+
+  
+$("#news-icon").click(() => {
+    console.log("news icon has been clicked");
+    showTop10();
+  });
+
 
 
   function showTop10() {
@@ -121,12 +130,6 @@ $("#viewAllNews").click(() => {
           return userNews;
        });
     }
-
-
-
-    //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
-
-    // .click(run);
 
 
 module.exports = {getNews, topImage, addNews};
