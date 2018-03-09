@@ -1,6 +1,7 @@
 "use strict";
 console.log("main.js is here");
 
+// REQUIRES
 let $ = require('jquery'),
     login = require('./user'),
     renderNews = require('./renderNews'),
@@ -9,11 +10,11 @@ let $ = require('jquery'),
     user = require('./user'), 
     date = require('./dateToday'),
     addUser = require('./fbAddUser.js'),
-    userObj = require('./buildFBObj'),
+    build = require('./buildFBObj'),
     books = require('./searchBooks'),
     footer = require('./footerIcons');
 
-
+//---------LOGIN-----------//
 $("#login").click(function(){
     // console.log("user clicked login");
     login.googleLogIn()
@@ -27,13 +28,25 @@ $("#login").click(function(){
     });
 });
 
-
+/////////////-------SEND INFO TO FIREBASE--------//////////
 function sendToFirebase(){
-      let userBuild = userObj.buildUserObj();
+      let userBuild = build.buildUserObj();
       //need to add logic to not add to firebase if user is already in firebase by UID
       addUser.addUser(userBuild);
 }
 
+
+/////////////--------SAVE BUTTONS----------------//////////
+$(document).on("click", ".book-hearts", function() {
+    console.log("clicked save new book");
+    let bookObj = build.buildBookObj();
+    books.addBook(bookObj)
+    .then((bookID) => {
+    //   loadSavedBooks();
+    });
+  });
+
+/////////////-------SECONDARY BOOK SEARCH---------/////////
 var bookList;
 $(document).on("click", "#bigBookSearchBtn", function innerBooks(){
     var bigBookInput = document.getElementById("bigBookSearch").value;
@@ -63,7 +76,14 @@ $(document).on("click", "#bigBookSearchBtn", function innerBooks(){
         <div style="padding: 1rem;">
     <h2>Top 10 Book Results for <span style="color: #C63D0F;">${bigBookInput}</span>:</h2><hr />`;
         for(let item in booksForList){
-            bookList += `<h3 style="color: #7E8F7C;">${booksForList[item].title}</h3><p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>`;
+            bookList += `<div class="row">
+            <div class="col-auto"><i class="far fa-heart book-hearts" style="text-decoration: none; color: #C63D0F; opacity: 0.7;"></i>
+            </div>
+            <div class="col-10">
+                    <h3 style="color: #7E8F7C;">${booksForList[item].title}</h3>
+                    <p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>
+                </div>
+            </div>`;
         }
         bookList += `</div>`;
         // console.log("bookList: ", bookList);
@@ -100,7 +120,14 @@ $(document).on("keyup", "#bigBookSearch", function innerBooks(e){
         <div style="padding: 1rem;">
     <h2>Top 10 Book Results for <span style="color: #C63D0F;">${bigBookInput}</span>:</h2><hr />`;
         for(let item in booksForList){
-            bookList += `<h3 style="color: #7E8F7C;">${booksForList[item].title}</h3><p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>`;
+            bookList += `<div class="row">
+            <div class="col-auto"><i class="far fa-heart book-hearts" style="text-decoration: none; color: #C63D0F; opacity: 0.7;"></i>
+            </div>
+            <div class="col-10">
+                    <h3 style="color: #7E8F7C;">${booksForList[item].title}</h3>
+                    <p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>
+                </div>
+            </div>`;
         }
         bookList += `</div>`;
         // console.log("bookList: ", bookList);
@@ -109,7 +136,7 @@ $(document).on("keyup", "#bigBookSearch", function innerBooks(e){
 }
 });
 
-//FOOTER ICONS
+//////////--------FOOTER ICONS--------/////////
 document.addEventListener('DOMContentLoaded', function () {
     $('#home-icon').on('click', function () {
       
@@ -120,4 +147,5 @@ document.addEventListener('DOMContentLoaded', function () {
     books.searchBooks();
 });
 });
+
 

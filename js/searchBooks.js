@@ -1,11 +1,28 @@
 "use strict";
 
-console.log("search books js is here");
-
+// REQUIRES
 let $ = require('jquery'),
 firebase = require("./configure"),
 userData = require("./user");
 
+// VARIABLES
+var bookList = `<div id="readingQuote" class="sageBG">
+<div class="quote">
+    <h1 style="color: #FDF3E7;"><em>Not all readers are leaders, but all leaders are readers.</em></h1>
+    <p style="text-align: right;">-President Harry S. Truman</p>
+</div>
+</div>
+<div class="sageBG" style="padding-bottom: 1rem;">
+    <h2>Find A New Favorite Book:</h2>
+    <div class="input-group input-group-lg mb-3">
+        <input id="bigBookSearch" type="text" class="form-control" placeholder ="Enter a title or author" aria-label="BookSearch" aria-describedby="inputGroup-sizing-lg"><div class="input-group-append">
+        &nbsp;<button type="button" class="btn btnGrey btn-lg" id="bigBookSearchBtn">Search</button>
+        </div>
+        </div>
+    </div>`;
+
+
+// FUNCTIONS
 
 // render homeBooks to dom
 function renderHomeBooks() {
@@ -18,6 +35,8 @@ function renderHomeBooks() {
     $("#homeMeetups").html(`<h2 style="color: #FDF3E7">Find a Local Meetup:</h2><p><em>Meetup Information coming in Dashbot v2</em></p>`);
 }
 
+
+// search clicks and keyups
 function searchBooks(){
     renderHomeBooks(); 
     $("#bookSearchBtn").click(()=>{
@@ -37,8 +56,7 @@ function searchBooks(){
     });
 }
 
-//get Book information from API
-var bookList;
+//get Book information from API and build results list
 function getBooks(bookInput) {
     return $.ajax({
         url: `http://openlibrary.org/search.json?q='${bookInput}'&limit=10`
@@ -48,25 +66,18 @@ function getBooks(bookInput) {
         var booksForList = [];
         bookResults = JSON.parse(bookReturn);
         booksForList = bookResults.docs;
+        // let key = booksForList.keys;
         console.log("book search results parsed", booksForList);
-        bookList = `<div id="readingQuote" class="sageBG">
-            <div class="quote">
-                <h1 style="color: #FDF3E7;"><em>Not all readers are leaders, but all leaders are readers.</em></h1>
-                <p style="text-align: right;">-President Harry S. Truman</p>
-            </div>
-        </div>
-        <div class="sageBG" style="padding-bottom: 1rem;">
-            <h2>Find A New Favorite Book:</h2>
-            <div class="input-group input-group-lg mb-3">
-            <input id="bigBookSearch" type="text" class="form-control" placeholder ="Enter a title or author" aria-label="BookSearch" aria-describedby="inputGroup-sizing-lg"><div class="input-group-append">
-            &nbsp;<button type="button" class="btn btnGrey btn-lg" id="bigBookSearchBtn">Search</button>
-            </div>
-            </div>
-        </div>
-        <div style="padding: 1rem;">
-    <h2>Top 10 Book Results for <span style="color: #C63D0F;">${bookInput}</span>:</h2><hr />`;
+        bookList += `<div style="padding: 1rem;"><h2>Top 10 Book Results for <span style="color: #C63D0F;">${bookInput}</span>:</h2><hr />`;
         for(let item in booksForList){
-            bookList += `<h3 style="color: #7E8F7C;">${booksForList[item].title}</h3><p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>`;
+            bookList += `<div class="row">
+            <div class="col-auto"><i class="far fa-heart book-hearts" style="text-decoration: none; color: #C63D0F; opacity: 0.7;"></i>
+            </div>
+            <div class="col-10">
+                    <h3 style="color: #7E8F7C;">${booksForList[item].title}</h3>
+                    <p>${booksForList[item].author_name} — <em>published (${booksForList[item].first_publish_year})</em></p>
+                </div>
+            </div>`;
         }
         bookList += `</div>`;
         // console.log("bookList: ", bookList);
@@ -75,10 +86,11 @@ function getBooks(bookInput) {
 }
 
 $("#books-icon").click(() => {
-    console.log("book icon has been clicked");
+    // console.log("book icon has been clicked");
     getBooks('');
     $("#primaryContainer").html(bookList);
   });
+
 
 
 searchBooks();
