@@ -73,13 +73,14 @@ function getArticle() {
 function getHeart(heart, news){
     $(heart).on('click', (event) => {
         console.log("event passing through", event.target.id);
-       
-        $.ajax({
+        return $.ajax({
             url: `${fireConfig.getFBsettings().databaseURL}/favoredNews.json`,
             type: 'POST',
             data: JSON.stringify(news),
             datayType: 'json'
-        });
+        }).done((newsData) => {
+            return newsData;
+     });
     });
 }
 
