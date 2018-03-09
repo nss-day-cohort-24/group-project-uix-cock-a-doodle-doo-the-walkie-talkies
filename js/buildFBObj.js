@@ -2,7 +2,9 @@
 
 // REQUIRE
 let user = require('./user.js'),
-    date = require('./dateToday');
+    date = require('./dateToday'),
+    books = require('./searchBooks'),
+    $ = require('jquery');
 
 function buildUserObj(UID) {
     let userObj = {
@@ -16,7 +18,7 @@ function buildUserObj(UID) {
 
 function buildNewsObj(news) {
     let newsObj = {
-        article_title: "",
+        article_title: $(news).attr("id"),
         article_description: "",
         article_source: "",
         uid: user.getUser()
