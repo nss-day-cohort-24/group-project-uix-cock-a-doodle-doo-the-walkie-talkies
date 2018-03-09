@@ -2,8 +2,12 @@
 // console.log("renderDOM file is coming through");
 let $ = require('../lib/node_modules/jquery');
 let profile = require('./userProfile');
+let user = require('./user');
 let fireConfig = require("./configure"),
       build = require('./buildFBObj');
+let userLog = user.getUser();
+console.log("user -- ", user.uid);
+
 
 
 var showNewsDataFunction = document.getElementById("news-data");
@@ -17,9 +21,14 @@ function getNews() {
     });
 }
 
-var newsArticles;
+var newsArticles = [];
 var newsArray = [];
 var newsStories = "";
+var heart;
+
+function saveNews() {
+    console.log("SAVE THIS ARTICLE");
+}
 
 function showNews() {
 getNews().then((newsData) =>{
@@ -32,34 +41,51 @@ getNews().then((newsData) =>{
 let seeMore = document.getElementById("seeMoreNews");
         for(var i = 1; i < 4; i++){
             // console.log(i, newsArticles[i]);
-             newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
-             <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">Read full article from ${newsArticles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
-        }
-        $('#news-data').html(newsStories);
-        newsArray = [newsArticles[i].title];
-    });
+             newsStories += `<div><li class="news-articles"><h3>${newsArticles[i].title}</h3></li><li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">Read full article from ${newsArticles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart-${i}" style="text-decoration: none; color: #C63D0F;"></i></li></div><br>`;
+            }
+
+            $('#news-data').html(newsStories);
+            newsArray = [newsArticles[i].title];
+        }).then(()=>{
+            let articles = document.getElementsByClassName('news-articles');
+    
+            for(var i = 0; i < articles.length; i++){
+                heart = document.getElementById(`favorites-heart-${i+1}`);
+                
+                console.log("articles", articles[i]);
+                // let pushNews = {
+                //     title: "",
+                //     description: "",
+                //     source: "",
+                //     uid: ""
+                // };
+                getHeart(heart);
+            }
+            
+        });
+
 }
 showNewsDataFunction.innerHTML = showNews();
 
 
-console.log("NEWS ARRAY: ", newsArray);
-
-
-   //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
-
-function saveNews() {
-    console.log("SAVE THIS ARTICLE");
+var save;
+function getHeart(heart, news){
+    $(heart).on('click', (event) => {
+       save = event.target.id;
+        console.log("event passing through", event.target.id);
+        return $.ajax({
+            url: `${fireConfig.getFBsettings().databaseURL}/favoredNews.json`,
+            type: 'POST',
+            data: JSON.stringify(news),
+            datayType: 'json'
+        });
+    });
 }
 
-showNewsDataFunction.addEventListener("click", function onClick(event) {
-    if(event.target.id == "favorites-heart") {
-        saveNews();
-    }else {
-        console.log("noooooooooooo");
-    }
-});
-
-
+function getArticle() {
+    return newsArticles;
+}
+   //WHEN USER PRESSES #favorites-heart THE ARTICLE IS SENT TO SAVED LIST
 
 
 var topArticleImage;
@@ -99,15 +125,26 @@ $("#viewAllNews").click(() => {
   function showTop10() {
     getNews().then((news10Data) =>{
      news10Articles = news10Data.articles;
+     console.log("news10Articles, ", news10Articles);
 
     let tenStories = `<h1 style="margin-bottom: 1rem;">Trending News</h1>`;
     let seeMore = document.getElementById("seeMoreNews");
             for(var i = 0; i < 10; i++){
                  tenStories += `<li class="news-articles" style="list-style-type: none"><h3>${news10Articles[i].title}</h3></li>
-                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">Read full article from ${news10Articles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
+                 <li style="list-style-type: none">${news10Articles[i].description}...<a href="${news10Articles[i].url}" alt="Link to ${news10Articles[i].title}">Read full article from ${news10Articles[i].source.name}&nbsp;»</a> <i class="far fa-heart" id="favorites-heart-${i}" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
             }
             $('#primaryContainer').html(tenStories);
 
+        }).then(()=>{
+            let articles = document.getElementsByClassName('news-articles');
+    
+            for(var i = 0; i < articles.length; i++){
+                heart = document.getElementById(`favorites-heart-${i+1}`);
+                getHeart(heart);
+
+
+            }
+            
         });
     }
     // showNewsDataFunction.addEventListener("click", function onClick(event) {

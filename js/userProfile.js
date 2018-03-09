@@ -24,7 +24,8 @@ $('#userPic').click(() => {
 
 function userProfile() {
     $('#primaryContainer').html(`<button id="logout" type="button" class="btn btnRust btn-block">Logout</button>
-    <button id="secondaryLogin" type="button" class="btn btnRust btn-block d-none">Login</button><p>Saved User Lists will also render here</p>`);
+    <button id="secondaryLogin" type="button" class="btn btnRust btn-block d-none">Login</button>
+    <p>Saved User Lists will also render here</p>`);
 }
 
 

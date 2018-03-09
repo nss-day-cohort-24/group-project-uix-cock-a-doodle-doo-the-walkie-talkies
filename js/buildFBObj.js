@@ -4,6 +4,7 @@
 let user = require('./user.js'),
     date = require('./dateToday'),
     books = require('./searchBooks'),
+    news = require('./renderNews'),
     $ = require('jquery');
 
 function buildUserObj(UID) {
@@ -16,12 +17,14 @@ function buildUserObj(UID) {
   return userObj;
 }
 
-function buildNewsObj(news) {
+function buildNewsObj(save) {
+    var newsSaveObj = news.getArticle();
+    var userID = user.getUser();
     let newsObj = {
-        article_title: $(news).attr("id"),
-        article_description: "",
-        article_source: "",
-        uid: user.getUser()
+        article_title: newsSaveObj[save].title,
+        article_description: newsSaveObj[save].description,
+        article_source: newsSaveObj[save].source.name,
+        uid: userID.uid
     };
     return newsObj;
 }

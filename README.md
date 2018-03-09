@@ -2,7 +2,7 @@
 
 ## DASHBOT
 
-## a You're a busy person, you travel a lot for work and or pleasure, but you always try to stay in the 'know'. With Dashbot we're excited to bring you an easy-to-use and friendly application to keep you up to date on top news stories in the US, your local weather, Meetups in your location, and for you to search for your favorite books!
+You're a busy person, you travel a lot for work and are always on the go, but you always try to stay in the 'know'. With Dashbot we're excited to bring you an easy-to-use and friendly application to keep you up to date on top news stories in the US, your local weather, Meetups in your location, and for you to search for your favorite books!
 
 This application is easy to use, but we'd love to give you some inside tips for keeping your information saved to your favorites!
 
