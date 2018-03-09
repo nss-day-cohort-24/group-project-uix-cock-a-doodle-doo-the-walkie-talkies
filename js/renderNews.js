@@ -30,7 +30,7 @@ getNews().then((newsData) =>{
  // check to see when i = 10, or break a loop when i is defined as 10
 
 let seeMore = document.getElementById("seeMoreNews");
-        for(var i = 1; i < 3; i++){
+        for(var i = 1; i < 4; i++){
             // console.log(i, newsArticles[i]);
              newsStories += `<li class="news-articles"><h3>${newsArticles[i].title}</h3></li>
              <li>${newsArticles[i].description}...<a href="${newsArticles[i].url}" alt="Link to ${newsArticles[i].title}" title="Link to ${newsArticles[i].title}">See full  article at ${newsArticles[i].source.name}</a> <i class="far fa-heart" id="favorites-heart" style="text-decoration: none; color: #C63D0F;"></i></li><br>`;
